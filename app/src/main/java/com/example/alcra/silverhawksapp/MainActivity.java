@@ -22,12 +22,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
     private FirebaseAuth auth;
     private String UID;
-    private Button profileButton;
+    private Button chamadaButton;
     private TextView userTextView;
     private TextView numberTextView;
 
@@ -52,8 +52,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         UID = auth.getUid();
         mDocRef = FirebaseFirestore.getInstance().document("usuários/"+UID);
 
-        profileButton = findViewById(R.id.bt_chamada);
-        profileButton.setOnClickListener(this);
+        chamadaButton = findViewById(R.id.bt_chamada);
+        chamadaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ListActivity.class));
+            }
+        });
     }
 
     @Override
@@ -73,10 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             }
         });
-    }
-
-    @Override
-    public void onClick(View view) {
     }
 
     private void logoutUser() {

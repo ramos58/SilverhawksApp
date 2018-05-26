@@ -103,7 +103,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.chamada_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -111,11 +111,8 @@ public class ListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.menu_logout:
-                logoutUser();
-                break;
-            case R.id.menu_perfil:
-                startActivity(new Intent(ListActivity.this, ListActivity.class));
+            case R.id.add_chamada:
+//                startActivity(new Intent(ListActivity.this, ListActivity.class));
                 break;
             case android.R.id.home:
                 onBackPressed();
