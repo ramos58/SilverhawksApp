@@ -64,17 +64,17 @@ public class ListActivity extends AppCompatActivity {
         db.collection("usuários").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if(e != null){
+                if (e != null) {
                     Log.d(TAG, "Error: " + e.getMessage());
                 }
-                for(DocumentChange doc: documentSnapshots.getDocumentChanges()){
-                    if(doc.getType() == DocumentChange.Type.ADDED){
+                for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                    if (doc.getType() == DocumentChange.Type.ADDED) {
                         Users users = doc.getDocument().toObject(Users.class);
                         usersList.add(users);
 
                         usersListAdapter.notifyDataSetChanged();
                     }
-                    if(doc.getType() == DocumentChange.Type.MODIFIED){
+                    if (doc.getType() == DocumentChange.Type.MODIFIED) {
                         Users users = doc.getDocument().toObject(Users.class);
                         usersList.add(users);
 
@@ -87,15 +87,12 @@ public class ListActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-
-
     }
 
     private void logoutUser() {
         auth.signOut();
-        if(auth.getCurrentUser() == null)
-        {
-            startActivity(new Intent(ListActivity.this,LoginActivity.class));
+        if (auth.getCurrentUser() == null) {
+            startActivity(new Intent(ListActivity.this, LoginActivity.class));
             finish();
         }
     }
@@ -110,7 +107,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_logout:
                 logoutUser();
                 break;
