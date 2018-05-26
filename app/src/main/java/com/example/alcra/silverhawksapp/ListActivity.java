@@ -57,7 +57,7 @@ public class ListActivity extends AppCompatActivity {
         usersList = new ArrayList<>();
         usersListAdapter = new UsersListAdapter(usersList);
 
-        mMainList = (RecyclerView) findViewById(R.id.main_List);
+        mMainList = findViewById(R.id.main_List);
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter(usersListAdapter);
 
@@ -87,6 +87,7 @@ public class ListActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
+
 
     }
 
