@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#c2c2c2</color>
+    <color name="colorPrimaryDark">#787878</color>
+    <color name="colorAccent">#8c7312</color>
+    <color name="white_silverhawks">#ffffff</color>
+    <color name="gray0_silverhawks">#d9d9d9</color>
+    <color name="gray1_silverhawks">#c2c2c2</color>
+    <color name="gray2_silverhawks">#787878</color>
+    <color name="gray3_silverhawks">#606060</color>
+    <color name="gold1_silverhawks">#8c7312</color>
+    <color name="gold2_silverhawks">#78693b</color>
+    <color name="black_silverhawks">#000000</color>
+</resources>

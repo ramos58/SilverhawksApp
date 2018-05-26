@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Silver Hawks</string>
+    <string name="logout">Logout</string>
+    <string name="perfil">Perfil</string>
+</resources>
