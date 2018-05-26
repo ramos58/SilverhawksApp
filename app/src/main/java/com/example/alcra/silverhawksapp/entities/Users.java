@@ -1,11 +1,15 @@
-package com.example.alcra.silverhawksapp;
+package com.example.alcra.silverhawksapp.entities;
 
 /**
  * Created by alcra on 15/05/2018.
  */
 
-public class Users {
-    String nome, numero, posicao;
+public class Users{
+
+
+    protected String nome;
+    protected String posicao;
+    protected String numero;
 
     public Users(){
 

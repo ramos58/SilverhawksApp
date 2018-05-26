@@ -9,23 +9,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
+import com.example.alcra.silverhawksapp.entities.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by alcra on 11/04/2018.
@@ -52,6 +47,11 @@ public class ListActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_profile);
         setSupportActionBar(toolbar);
 
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+
         auth = FirebaseAuth.getInstance();
         UID = auth.getUid();
         usersList = new ArrayList<>();
@@ -61,12 +61,13 @@ public class ListActivity extends AppCompatActivity {
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter(usersListAdapter);
 
-        db.collection("usuários").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("usuários").orderBy("nome").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 if (e != null) {
                     Log.d(TAG, "Error: " + e.getMessage());
                 }
+
                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                     if (doc.getType() == DocumentChange.Type.ADDED) {
                         Users users = doc.getDocument().toObject(Users.class);
@@ -76,9 +77,11 @@ public class ListActivity extends AppCompatActivity {
                     }
                     if (doc.getType() == DocumentChange.Type.MODIFIED) {
                         Users users = doc.getDocument().toObject(Users.class);
-                        usersList.add(users);
 
-                        usersListAdapter.notifyDataSetChanged();
+                        usersList.remove(doc.getOldIndex());
+                        usersList.add(doc.getOldIndex(), users);
+
+                        usersListAdapter.notifyItemChanged(doc.getOldIndex());
                     }
                 }
             }
@@ -113,6 +116,9 @@ public class ListActivity extends AppCompatActivity {
                 break;
             case R.id.menu_perfil:
                 startActivity(new Intent(ListActivity.this, ListActivity.class));
+                break;
+            case android.R.id.home:
+                onBackPressed();
                 break;
         }
 
