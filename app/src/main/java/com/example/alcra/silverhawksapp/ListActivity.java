@@ -87,7 +87,6 @@ public class ListActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-
     }
 
     private void logoutUser() {
