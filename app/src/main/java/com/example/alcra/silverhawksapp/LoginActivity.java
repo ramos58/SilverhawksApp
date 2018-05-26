@@ -41,9 +41,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passText = findViewById(R.id.et_pass);
         activity_login = findViewById(R.id.activity_login);
 
-        emailText.setText("teste@teste.com.br");
-        passText.setText("123456");
-
         loginButton.setOnClickListener(this);
 
         //Inicia Firebase Auth
