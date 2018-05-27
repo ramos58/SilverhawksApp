@@ -7,9 +7,9 @@ package com.example.alcra.silverhawksapp.entities;
 public class Presenca{
 
     public static final String COLLECTION_PRESENCA = "presenca";
-    public static final int P = 0;
-    public static final int J = 1;
-    public static final int F = 2;
+    public static final int P = 1;
+    public static final int J = 2;
+    public static final int F = 3;
     String name;
     String date;
     int tipo;
@@ -18,6 +18,9 @@ public class Presenca{
         this.name = name;
         this.date = date;
         this.tipo = tipo;
+    }
+
+    public Presenca() {
     }
 
     public String getDate() {

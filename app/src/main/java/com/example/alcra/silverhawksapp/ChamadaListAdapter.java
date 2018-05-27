@@ -20,11 +20,11 @@ import static com.example.alcra.silverhawksapp.entities.Presenca.P;
  * Created by alcra on 27/05/2018.
  */
 
-public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.ViewHolder>{
+public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.ViewHolder> {
 
     public List<Presenca> chamadaList;
 
-    public ChamadaListAdapter(List<Presenca> chamadaList){
+    public ChamadaListAdapter(List<Presenca> chamadaList) {
 
         this.chamadaList = chamadaList;
 
@@ -37,26 +37,39 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ChamadaListAdapter.ViewHolder holder, int position) {
-        final Presenca presenca = chamadaList.get(position);
+    public void onBindViewHolder(final ChamadaListAdapter.ViewHolder holder, int position) {
+        Presenca presenca = chamadaList.get(holder.getAdapterPosition());
 
         holder.nomeText.setText(presenca.getName());
-        switch (presenca.getTipo()){
-            case P:
-                holder.presencaRG.check(R.id.rb_presente);
-                break;
-            case J:
-                holder.presencaRG.check(R.id.rb_justificado);
-                break;
-            case F:
-                holder.presencaRG.check(R.id.rb_falta);
-                break;
+        if (presenca.getTipo() != 0) {
+            switch (presenca.getTipo()) {
+                case P:
+                    holder.presencaRG.check(R.id.rb_presente);
+                    break;
+                case J:
+                    holder.presencaRG.check(R.id.rb_justificado);
+                    break;
+                case F:
+                    holder.presencaRG.check(R.id.rb_falta);
+                    break;
+            }
         }
 
         holder.presencaRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                Log.d(ChamadaListAdapter.class.getSimpleName(),"id: "+i);
+                Log.d(ChamadaListAdapter.class.getSimpleName(), "id: " + i);
+                switch (i){
+                    case R.id.rb_presente:
+                        chamadaList.get(holder.getAdapterPosition()).setTipo(Presenca.P);
+                        break;
+                    case R.id.rb_justificado:
+                        chamadaList.get(holder.getAdapterPosition()).setTipo(Presenca.J);
+                        break;
+                    case R.id.rb_falta:
+                        chamadaList.get(holder.getAdapterPosition()).setTipo(Presenca.F);
+                        break;
+                }
             }
         });
     }
@@ -66,7 +79,7 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
         return chamadaList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nomeText;
         public RadioGroup presencaRG;

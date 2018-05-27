@@ -46,7 +46,7 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        toolbar = findViewById(R.id.toolbar_profile);
+        toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null){
@@ -114,35 +114,36 @@ public class ListActivity extends AppCompatActivity {
 
     private void addAtletas() {
         CollectionReference atletas = mFirestore.collection(Atleta.COLLECTION_ATLETAS);
-        Atleta atleta = new Atleta();
-        atleta.setNameComp("Amanda Lúcia Carstens Ramos");
-        atleta.setFirstName("Amanda");
-        atleta.setLastName("Ramos");
-        atleta.setNumber("99");
-        atleta.setPosicao("Defensive Line");
+//        Atleta atleta = new Atleta();
+//        atleta.setNameComp("Amanda Lúcia Carstens Ramos");
+//        atleta.setFirstName("Atleta");
+//        atleta.setLastName("1");
+//        atleta.setNumber("99");
+//        atleta.setPosicao("Defensive Line");
+//
+//        Address address = new Address();
+//        address.setCep("80035230");
+//        atleta.setAddress(address);
 
-        Address address = new Address();
-        address.setCep("80035230");
-        atleta.setAddress(address);
-
-        for (DocumentChange athlete :
-                atletasList) {
-
-            Atleta atleta1 = athlete.getDocument().toObject(Atleta.class);
-
-            if (atleta1.getNameComp().equals(atleta.getNameComp())){
-                updateAthlete(atleta, athlete);
-
-            } else {
-                atletas.add(atleta);
-            }
+        for (int i = 0; i < 10; i++) {
+            Atleta atleta = new Atleta();
+            atleta.setFirstName("Atleta");
+            atleta.setLastName(String.valueOf(i));
+            atleta.setNumber(String.valueOf(i));
+            atletas.add(atleta);
         }
-    }
-
-    private void updateAthlete(Atleta atleta, DocumentChange athlete) {
-        athlete.getDocument().getReference().set(atleta);
-        mFirestore.collection(Atleta.COLLECTION_ATLETAS).document(athlete.getDocument().getId())
-                .collection(Presenca.COLLECTION_PRESENCA)
-                .add(new Presenca(atleta.getNameComp(),new Date().toString(),Presenca.P));
+//
+//        for (DocumentChange athlete :
+//                atletasList) {
+//
+//            Atleta atleta1 = athlete.getDocument().toObject(Atleta.class);
+//
+//            if (atleta1.getNameComp().equals(atleta.getNameComp())){
+//                updateAthlete(atleta, athlete);
+//
+//            } else {
+//                atletas.add(atleta);
+//            }
+//        }
     }
 }

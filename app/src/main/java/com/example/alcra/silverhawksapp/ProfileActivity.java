@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        toolbar = findViewById(R.id.toolbar_profile);
+        toolbar = findViewById(R.id.include);
 
         setSupportActionBar(toolbar);
 

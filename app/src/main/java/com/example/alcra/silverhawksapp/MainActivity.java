@@ -41,9 +41,11 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar_profile);
+        toolbar = findViewById(R.id.include);
+        toolbar.setTitle("Main Activity");
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         auth = FirebaseAuth.getInstance();
 
