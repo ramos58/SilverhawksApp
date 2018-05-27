@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.example.alcra.silverhawksapp.entities.Presenca;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,8 +45,8 @@ public class ChamadaActivity extends AppCompatActivity {
     private void initList() {
         List<Presenca> presencaList = new ArrayList<>();
 
-        presencaList.add(new Presenca("Amanda Lúcia Carstens Ramos", Presenca.P));
-        presencaList.add(new Presenca("José Eduardo Lima dos Santos", Presenca.F));
+        presencaList.add(new Presenca("Amanda Lúcia Carstens Ramos", new Date().toString(), Presenca.P));
+        presencaList.add(new Presenca("José Eduardo Lima dos Santos", new Date().toString(), Presenca.F));
 
         adapter = new ChamadaListAdapter(presencaList);
 

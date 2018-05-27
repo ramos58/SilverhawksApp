@@ -10,8 +10,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.alcra.silverhawksapp.entities.Address;
+import com.example.alcra.silverhawksapp.entities.Atleta;
+import com.example.alcra.silverhawksapp.entities.Presenca;
 import com.example.alcra.silverhawksapp.entities.Users;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -20,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,17 +33,14 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
-
-    private static final String TAG = "FireLog";
     private DocumentReference mDocRef;
 
     private Toolbar toolbar;
-    private FirebaseAuth auth;
-    private String UID;
     private RecyclerView mMainList;
     private UsersListAdapter usersListAdapter;
     private List<Users> usersList;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private List<DocumentChange> atletasList;
+    FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,37 +53,30 @@ public class ListActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-
-        auth = FirebaseAuth.getInstance();
-        UID = auth.getUid();
         usersList = new ArrayList<>();
+        atletasList = new ArrayList<>();
         usersListAdapter = new UsersListAdapter(usersList);
 
         mMainList = findViewById(R.id.main_List);
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter(usersListAdapter);
 
-        db.collection("usuários").orderBy("nome").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        mFirestore.collection(Atleta.COLLECTION_ATLETAS).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 if (e != null) {
-                    Log.d(TAG, "Error: " + e.getMessage());
+                    Log.d("FireLog", "Error: " + e.getMessage());
                 }
 
                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                     if (doc.getType() == DocumentChange.Type.ADDED) {
-                        Users users = doc.getDocument().toObject(Users.class);
-                        usersList.add(users);
-
-                        usersListAdapter.notifyDataSetChanged();
+                        atletasList.add(doc);
                     }
                     if (doc.getType() == DocumentChange.Type.MODIFIED) {
-                        Users users = doc.getDocument().toObject(Users.class);
-
-                        usersList.remove(doc.getOldIndex());
-                        usersList.add(doc.getOldIndex(), users);
-
-                        usersListAdapter.notifyItemChanged(doc.getOldIndex());
+//                        Atleta atleta = doc.getDocument().toObject(Atleta.class);
+//
+//                        atletasList.remove(doc.getOldIndex());
+//                        atletasList.add(doc.getOldIndex(), atleta);
                     }
                 }
             }
@@ -90,14 +85,6 @@ public class ListActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-    }
-
-    private void logoutUser() {
-        auth.signOut();
-        if (auth.getCurrentUser() == null) {
-            startActivity(new Intent(ListActivity.this, LoginActivity.class));
-            finish();
-        }
     }
 
     @Override
@@ -117,8 +104,45 @@ public class ListActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.teste:
+                addAtletas();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addAtletas() {
+        CollectionReference atletas = mFirestore.collection(Atleta.COLLECTION_ATLETAS);
+        Atleta atleta = new Atleta();
+        atleta.setNameComp("Amanda Lúcia Carstens Ramos");
+        atleta.setFirstName("Amanda");
+        atleta.setLastName("Ramos");
+        atleta.setNumber("99");
+        atleta.setPosicao("Defensive Line");
+
+        Address address = new Address();
+        address.setCep("80035230");
+        atleta.setAddress(address);
+
+        for (DocumentChange athlete :
+                atletasList) {
+
+            Atleta atleta1 = athlete.getDocument().toObject(Atleta.class);
+
+            if (atleta1.getNameComp().equals(atleta.getNameComp())){
+                updateAthlete(atleta, athlete);
+
+            } else {
+                atletas.add(atleta);
+            }
+        }
+    }
+
+    private void updateAthlete(Atleta atleta, DocumentChange athlete) {
+        athlete.getDocument().getReference().set(atleta);
+        mFirestore.collection(Atleta.COLLECTION_ATLETAS).document(athlete.getDocument().getId())
+                .collection(Presenca.COLLECTION_PRESENCA)
+                .add(new Presenca(atleta.getNameComp(),new Date().toString(),Presenca.P));
     }
 }

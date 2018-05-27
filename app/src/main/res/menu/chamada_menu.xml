@@ -9,4 +9,12 @@
         android:orderInCategory="1"
         app:showAsAction="always"
         />
+
+    <item android:title="Add"
+        android:id="@+id/teste"
+        android:icon="@drawable/rb_icon"
+        android:visible="true"
+        android:orderInCategory="1"
+        app:showAsAction="always"
+        />
 </menu>

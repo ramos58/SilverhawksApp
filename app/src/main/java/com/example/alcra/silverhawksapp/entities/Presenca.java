@@ -6,23 +6,34 @@ package com.example.alcra.silverhawksapp.entities;
 
 public class Presenca{
 
+    public static final String COLLECTION_PRESENCA = "presenca";
     public static final int P = 0;
     public static final int J = 1;
     public static final int F = 2;
-    String nome;
+    String name;
+    String date;
     int tipo;
 
-    public Presenca(String nome, int tipo) {
-        this.nome = nome;
+    public Presenca(String name, String date, int tipo) {
+        this.name = name;
+        this.date = date;
         this.tipo = tipo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDate() {
+        return date;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getTipo() {

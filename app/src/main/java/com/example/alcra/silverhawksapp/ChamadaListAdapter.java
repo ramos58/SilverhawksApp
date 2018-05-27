@@ -9,7 +9,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.alcra.silverhawksapp.entities.Presenca;
-import com.example.alcra.silverhawksapp.entities.Users;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
     public void onBindViewHolder(ChamadaListAdapter.ViewHolder holder, int position) {
         final Presenca presenca = chamadaList.get(position);
 
-        holder.nomeText.setText(presenca.getNome());
+        holder.nomeText.setText(presenca.getName());
         switch (presenca.getTipo()){
             case P:
                 holder.presencaRG.check(R.id.rb_presente);
