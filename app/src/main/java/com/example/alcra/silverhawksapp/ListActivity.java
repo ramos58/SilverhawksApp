@@ -112,7 +112,7 @@ public class ListActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.add_chamada:
-//                startActivity(new Intent(ListActivity.this, ListActivity.class));
+                startActivity(new Intent(ListActivity.this, ChamadaActivity.class));
                 break;
             case android.R.id.home:
                 onBackPressed();
