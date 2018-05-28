@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.widget.TextClock;
 import android.widget.TextView;
 
+import com.example.alcra.silverhawksapp.entities.Chamada;
 import com.example.alcra.silverhawksapp.entities.Presenca;
 
 import java.util.List;
@@ -22,12 +24,15 @@ import static com.example.alcra.silverhawksapp.entities.Presenca.P;
 
 public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.ViewHolder> {
 
-    public List<Presenca> chamadaList;
+    private List<Chamada> chamadaList;
+    private OnClick onClick;
 
-    public ChamadaListAdapter(List<Presenca> chamadaList) {
-
+    public ChamadaListAdapter(List<Chamada> chamadaList) {
         this.chamadaList = chamadaList;
+    }
 
+    public void setOnClick(OnClick onClick) {
+        this.onClick = onClick;
     }
 
     @Override
@@ -38,37 +43,16 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
 
     @Override
     public void onBindViewHolder(final ChamadaListAdapter.ViewHolder holder, int position) {
-        Presenca presenca = chamadaList.get(holder.getAdapterPosition());
+        final Chamada chamada = chamadaList.get(holder.getAdapterPosition());
 
-        holder.nomeText.setText(presenca.getName());
-        if (presenca.getTipo() != 0) {
-            switch (presenca.getTipo()) {
-                case P:
-                    holder.presencaRG.check(R.id.rb_presente);
-                    break;
-                case J:
-                    holder.presencaRG.check(R.id.rb_justificado);
-                    break;
-                case F:
-                    holder.presencaRG.check(R.id.rb_falta);
-                    break;
-            }
-        }
-
-        holder.presencaRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        holder.dataText.setText(chamada.getDate());
+        holder.localText.setText(chamada.getLocal());
+        holder.tipoText.setText(chamada.getTipo().toString());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                Log.d(ChamadaListAdapter.class.getSimpleName(), "id: " + i);
-                switch (i){
-                    case R.id.rb_presente:
-                        chamadaList.get(holder.getAdapterPosition()).setTipo(Presenca.P);
-                        break;
-                    case R.id.rb_justificado:
-                        chamadaList.get(holder.getAdapterPosition()).setTipo(Presenca.J);
-                        break;
-                    case R.id.rb_falta:
-                        chamadaList.get(holder.getAdapterPosition()).setTipo(Presenca.F);
-                        break;
+            public void onClick(View view) {
+                if(onClick != null){
+                    onClick.click(holder.getAdapterPosition());
                 }
             }
         });
@@ -81,15 +65,20 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nomeText;
-        public RadioGroup presencaRG;
+        public TextView dataText;
+        public TextView localText;
+        public TextView tipoText;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            nomeText = itemView.findViewById(R.id.tv_nome);
-            presencaRG = itemView.findViewById(R.id.rg_presenca);
-
+            dataText = itemView.findViewById(R.id.tv_data);
+            localText = itemView.findViewById(R.id.tv_local);
+            tipoText = itemView.findViewById(R.id.tv_tipo);
         }
+    }
+
+    public interface OnClick{
+        void click(int position);
     }
 }

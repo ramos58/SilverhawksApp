@@ -11,10 +11,10 @@ public class Atleta {
     private String birthday;
     private String celPhone;
     private String email;
-    private Tipo tipo;
     private Address address;
     private String number;
-    private String posicao;
+    private Posicao posicao;
+    private Unidade unidade;
     private Boolean isActive;
 
     public Atleta() {
@@ -22,14 +22,6 @@ public class Atleta {
 
     public String getNameComp() {
         return nameComp;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
     }
 
     public void setNameComp(String nameComp) {
@@ -92,14 +84,6 @@ public class Atleta {
         this.email = email;
     }
 
-    public Tipo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -116,24 +100,61 @@ public class Atleta {
         this.number = number;
     }
 
-    public String getPosicao() {
+    public Posicao getPosicao() {
         return posicao;
     }
 
-    public void setPosicao(String posicao) {
+    public void setPosicao(Posicao posicao) {
         this.posicao = posicao;
     }
 
-    public enum Tipo{
-        ATLETA(0),
-        CT(1);
+    public Unidade getUnidade() {
+        return unidade;
+    }
 
-        int tipo;
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade;
+    }
 
-        Tipo(int tipo) {
-            this.tipo = tipo;
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public enum Unidade{
+        ATAQUE(1),
+        DEFESA(2),
+        ST(3);
+
+        int unidade;
+
+        Unidade(int unidade) {
+            this.unidade = unidade;
         }
     }
 
+    public enum Posicao{
+        QB(1),
+        WR(2),
+        RB(3),
+        OL(4),
+        DL(5),
+        LB(6),
+        CB(7),
+        S(8),
+        P(9),
+        K(10),
+        LS(11),
+        H(12);
+
+        int posicao;
+
+        Posicao(int posicao) {
+            this.posicao = posicao;
+        }
+    }
 
 }
