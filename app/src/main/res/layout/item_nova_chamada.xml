@@ -36,18 +36,21 @@
             android:id="@+id/rb_presente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text=" "
             android:padding="8dp" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rb_justificado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text=" "
             android:padding="8dp" />
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rb_falta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text=" "
             android:padding="8dp" />
     </RadioGroup>
 

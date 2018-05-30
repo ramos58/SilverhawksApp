@@ -2,5 +2,6 @@
     <string name="app_name">Silver Hawks</string>
     <string name="logout">Logout</string>
     <string name="perfil">Perfil</string>
+    <string name="text_editando">Editando</string>
     <string name="text_enviando">Enviando</string>
 </resources>

@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import com.example.alcra.silverhawksapp.entities.Atleta;
 import com.example.alcra.silverhawksapp.entities.Chamada;
@@ -39,15 +41,23 @@ public class NovaChamadaActivity extends AppCompatActivity {
     FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     List<Presenca> presencaList = new ArrayList<>();
     List<DocumentChange> refList = new ArrayList<>();
+    EditText localEditText;
+    EditText dataEditText;
+    RadioGroup tipoRadioGroup;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_chamada);
 
+        localEditText = findViewById(R.id.et_local);
+        dataEditText = findViewById(R.id.et_data);
+        tipoRadioGroup = findViewById(R.id.rg_tipo);
+
         initToolbar();
         initList();
     }
+
 
     private void initToolbar() {
         toolbar = findViewById(R.id.include);
@@ -55,36 +65,39 @@ public class NovaChamadaActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setTitle("Nova Chamada");
         }
     }
 
     private void initList() {
 
         adapter = new NovaChamadaListAdapter(presencaList);
+        tipoRadioGroup.check(R.id.rb_pratico);
+        mFirestore.collection(Atleta.COLLECTION_ATLETAS).orderBy("nameComp")
+                .whereEqualTo("active", "true")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.d("FireLog", "Error: " + e.getMessage());
+                        }
 
-        mFirestore.collection(Atleta.COLLECTION_ATLETAS).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.d("FireLog", "Error: " + e.getMessage());
-                }
+                        for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                            if (doc.getType() == DocumentChange.Type.ADDED) {
+                                Atleta atleta = doc.getDocument().toObject(Atleta.class);
+                                Presenca presenca = new Presenca();
+                                presenca.setName(atleta.getFirstName() + " " + atleta.getLastName());
+                                presenca.setTipo(Presenca.P);
+                                presenca.setUserId(doc.getDocument().getId());
+                                presencaList.add(presenca);
+                                adapter.notifyDataSetChanged();
+                            }
+                            if (doc.getType() == DocumentChange.Type.MODIFIED) {
 
-                for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
-                    if (doc.getType() == DocumentChange.Type.ADDED) {
-                        Atleta atleta = doc.getDocument().toObject(Atleta.class);
-                        Presenca presenca = new Presenca();
-                        presenca.setName(atleta.getFirstName() + " " + atleta.getLastName());
-                        presenca.setTipo(Presenca.P);
-                        presenca.setUserId(doc.getDocument().getId());
-                        presencaList.add(presenca);
-                        adapter.notifyDataSetChanged();
+                            }
+                        }
                     }
-                    if (doc.getType() == DocumentChange.Type.MODIFIED) {
-
-                    }
-                }
-            }
-        });
+                });
 
 
         chamadaRecycler = findViewById(R.id.rv_chamada);
@@ -119,21 +132,50 @@ public class NovaChamadaActivity extends AppCompatActivity {
         builder.setIndeterminate(true);
         builder.show();
 
-        String date = DateUtils.getFormatedDate(new Date());
-        String month = DateUtils.getMonth(new Date());
+        String local = localEditText.getText().toString();
+        String data = dataEditText.getText().toString();
+        Chamada.Tipo tipo = null;
+        String month = data.split("/")[1];
+
+        switch (tipoRadioGroup.getCheckedRadioButtonId()) {
+            case R.id.rb_pratico:
+                tipo = Chamada.Tipo.PRATICO;
+                break;
+            case R.id.rb_teorico:
+                tipo = Chamada.Tipo.TEORICO;
+                break;
+        }
 
         DocumentReference doc = mFirestore.collection(Chamada.COLLECTION_CHAMADA).document();
 
-        Chamada chamada = new Chamada(date,"Parque Tingui",Chamada.Tipo.PRATICO);
-        doc.set(chamada);
+        Chamada chamada = new Chamada(data, local, tipo);
 
+        int p = 0, j = 0, f = 0;
         for (int i = 0; i < presencaList.size(); i++) {
-            presencaList.get(i).setDate(date);
+            presencaList.get(i).setDate(data);
             presencaList.get(i).setLocal(chamada.getLocal());
             presencaList.get(i).setMes(month);
             presencaList.get(i).setIdChamada(doc.getId());
             mFirestore.collection(Presenca.COLLECTION_PRESENCA).add(presencaList.get(i));
+            switch (presencaList.get(i).getTipo()) {
+                case Presenca.P:
+                    p++;
+                    break;
+                case Presenca.J:
+                    j++;
+                    break;
+                case Presenca.F:
+                    f++;
+                    break;
+            }
         }
+
+        chamada.setTotalAtletas(presencaList.size());
+        chamada.setTotalPresencas(p);
+        chamada.setTotalJustificativas(j);
+        chamada.setTotalFaltas(f);
+
+        doc.set(chamada);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -141,6 +183,6 @@ public class NovaChamadaActivity extends AppCompatActivity {
             public void run() {
                 finish();
             }
-        },500);
+        }, 500);
     }
 }

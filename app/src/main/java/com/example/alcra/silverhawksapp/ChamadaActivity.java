@@ -1,5 +1,6 @@
 package com.example.alcra.silverhawksapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.alcra.silverhawksapp.entities.Address;
 import com.example.alcra.silverhawksapp.entities.Atleta;
+import com.example.alcra.silverhawksapp.entities.AtletaExcel;
 import com.example.alcra.silverhawksapp.entities.Chamada;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
@@ -18,8 +21,17 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +59,7 @@ public class ChamadaActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setTitle("Lista de Chamadas");
         }
 
         chamadaList = new ArrayList<>();
@@ -62,7 +75,8 @@ public class ChamadaActivity extends AppCompatActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(chamadaListAdapter);
 
-        mFirestore.collection(Chamada.COLLECTION_CHAMADA).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        mFirestore.collection(Chamada.COLLECTION_CHAMADA).orderBy("date", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 if (e != null) {
@@ -77,10 +91,10 @@ public class ChamadaActivity extends AppCompatActivity {
                         chamadaListAdapter.notifyDataSetChanged();
                     }
                     if (doc.getType() == DocumentChange.Type.MODIFIED) {
-//                        Atleta atleta = doc.getDocument().toObject(Atleta.class);
+//                        Chamada chamada = doc.getDocument().toObject(Chamada.class);
 //
-//                        atletasList.remove(doc.getOldIndex());
-//                        atletasList.add(doc.getOldIndex(), atleta);
+//                        chamadaList.remove(doc.getOldIndex());
+//                        chamadaList.add(doc.getOldIndex(), chamada);
                     }
                 }
             }
@@ -108,46 +122,63 @@ public class ChamadaActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.teste:
-                addAtletas();
-                break;
+//            case R.id.teste:
+//                try {
+//                    addAtletas();
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void addAtletas() {
+    private void addAtletas() throws ParseException, IOException {
         CollectionReference atletas = mFirestore.collection(Atleta.COLLECTION_ATLETAS);
-//        Atleta atleta = new Atleta();
-//        atleta.setNameComp("Amanda Lúcia Carstens Ramos");
-//        atleta.setFirstName("Atleta");
-//        atleta.setLastName("1");
-//        atleta.setNumber("99");
-//        atleta.setPosicao("Defensive Line");
-//
-//        Address address = new Address();
-//        address.setCep("80035230");
-//        atleta.setAddress(address);
 
-        for (int i = 0; i < 10; i++) {
-            Atleta atleta = new Atleta();
-            atleta.setFirstName("Atleta");
-            atleta.setLastName(String.valueOf(i));
-            atleta.setNumber(String.valueOf(i));
-            atletas.add(atleta);
+        getBaseContext().getAssets().open("atletas.json");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("atletas.json")));
+
+        Gson gson = new Gson();
+        List<AtletaExcel> list = gson.fromJson(bufferedReader,AtletaExcel.Atletas.class).atletas;
+        List<Atleta> athlete = new ArrayList<>();
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("MM-dd-yy");
+        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd/MM/YYYY");
+
+        for (AtletaExcel atletaExcel:
+                list) {
+            Atleta user = new Atleta();
+            Address address = new Address();
+            user.setNameComp(atletaExcel.nomeComp);
+            user.setFirstName(atletaExcel.firstName);
+            user.setLastName(atletaExcel.lastName);
+            user.setRg(atletaExcel.rg);
+            user.setCpf(atletaExcel.cpf);
+            user.setBirthday(simpleDateFormat2.format((simpleDateFormat1.parse(atletaExcel.birthday))));
+            user.setCelPhone(atletaExcel.celPhone);
+            user.setEmail(atletaExcel.email);
+
+            address.setStreet(atletaExcel.street);
+            address.setNumber(atletaExcel.addressNumber);
+            address.setComplement(atletaExcel.complement);
+            address.setNeighborhood(atletaExcel.neighborhood);
+            address.setCep(atletaExcel.cep);
+            address.setCity(atletaExcel.city);
+            address.setState(atletaExcel.state);
+            user.setAddress(address);
+
+            user.setNumber(atletaExcel.number);
+            user.setPosicao(atletaExcel.posicao);
+            user.setUnidade(atletaExcel.unidade);
+            user.setActive(atletaExcel.isActive);
+
+            //athlete.add(user);
+            atletas.add(user);
         }
-//
-//        for (DocumentChange athlete :
-//                atletasList) {
-//
-//            Atleta atleta1 = athlete.getDocument().toObject(Atleta.class);
-//
-//            if (atleta1.getNameComp().equals(atleta.getNameComp())){
-//                updateAthlete(atleta, athlete);
-//
-//            } else {
-//                atletas.add(atleta);
-//            }
-//        }
     }
 }

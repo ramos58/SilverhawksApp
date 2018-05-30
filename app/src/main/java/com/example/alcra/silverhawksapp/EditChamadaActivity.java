@@ -13,21 +13,27 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 
-import com.example.alcra.silverhawksapp.entities.Atleta;
 import com.example.alcra.silverhawksapp.entities.Chamada;
 import com.example.alcra.silverhawksapp.entities.Presenca;
 import com.example.alcra.silverhawksapp.utils.DateUtils;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.example.alcra.silverhawksapp.entities.Chamada.Tipo.PRATICO;
 
 /**
  * Created by alcra on 27/05/2018.
@@ -49,6 +55,11 @@ public class EditChamadaActivity extends AppCompatActivity {
     Toolbar toolbar;
     FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     List<Presenca> presencaList = new ArrayList<>();
+    List<DocumentSnapshot> refPresencaList = new ArrayList<>();
+    EditText localEditText;
+    EditText dataEditText;
+    RadioGroup tipoRadioGroup;
+
 
 
     @Override
@@ -56,10 +67,34 @@ public class EditChamadaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_chamada);
 
+        localEditText = findViewById(R.id.et_local);
+        dataEditText = findViewById(R.id.et_data);
+        tipoRadioGroup = findViewById(R.id.rg_tipo);
+        Chamada chamada = new Chamada();
+
         initToolbar();
 
         if(getIntent().hasExtra(CHAMADA_ID)){
             initList(getIntent().getStringExtra(CHAMADA_ID));
+
+            mFirestore.collection(Chamada.COLLECTION_CHAMADA)
+                    .document(getIntent().getStringExtra(CHAMADA_ID))
+                    .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    final Chamada chamada = documentSnapshot.toObject(Chamada.class);
+                    localEditText.setText(chamada.getLocal());
+                    dataEditText.setText(chamada.getDate());
+                    switch (chamada.getTipo()){
+                        case PRATICO:
+                            tipoRadioGroup.check(R.id.rb_pratico);
+                            break;
+                        case TEORICO:
+                            tipoRadioGroup.check(R.id.rb_teorico);
+                            break;
+                    }
+                }
+            });
         }
         else{
             finish();
@@ -80,6 +115,7 @@ public class EditChamadaActivity extends AppCompatActivity {
         adapter = new NovaChamadaListAdapter(presencaList);
 
         mFirestore.collection(Presenca.COLLECTION_PRESENCA).whereEqualTo("idChamada",chamadaId)
+                .orderBy("name", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -90,7 +126,8 @@ public class EditChamadaActivity extends AppCompatActivity {
                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                     if (doc.getType() == DocumentChange.Type.ADDED) {
                         Presenca presenca = doc.getDocument().toObject(Presenca.class);
-                        presencaList.add(0,presenca);
+                        refPresencaList.add(doc.getDocument());
+                        presencaList.add(presenca);
                         adapter.notifyDataSetChanged();
                     }
                     if (doc.getType() == DocumentChange.Type.MODIFIED) {
@@ -120,34 +157,73 @@ public class EditChamadaActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.envia_chamada:
-               // enviaChamada();
+               editaChamada();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void enviaChamada() {
+    private void editaChamada() {
         ProgressDialog builder = new ProgressDialog(this);
-        builder.setMessage(getString(R.string.text_enviando));
+        builder.setMessage(getString(R.string.text_editando));
         builder.setIndeterminate(true);
         builder.show();
 
-        String date = DateUtils.getFormatedDate(new Date());
-        String month = DateUtils.getMonth(new Date());
+        String local = localEditText.getText().toString();
+        String data = dataEditText.getText().toString();
+        Chamada.Tipo tipo = null;
+        String month = data.split("/")[1];
 
-        DocumentReference doc = mFirestore.collection(Chamada.COLLECTION_CHAMADA).document();
-
-        Chamada chamada = new Chamada(date, "Parque Barigui", Chamada.Tipo.PRATICO);
-        doc.set(chamada);
-
-        for (int i = 0; i < presencaList.size(); i++) {
-            presencaList.get(i).setDate(date);
-            presencaList.get(i).setLocal("Parque Barigui");
-            presencaList.get(i).setMes(month);
-            presencaList.get(i).setIdChamada(doc.getId());
-            mFirestore.collection(Presenca.COLLECTION_PRESENCA).add(presencaList.get(i));
+        switch (tipoRadioGroup.getCheckedRadioButtonId()) {
+            case R.id.rb_pratico:
+                tipo = Chamada.Tipo.PRATICO;
+                break;
+            case R.id.rb_teorico:
+                tipo = Chamada.Tipo.TEORICO;
+                break;
         }
+
+        DocumentReference doc = mFirestore.collection(Chamada.COLLECTION_CHAMADA)
+                .document(getIntent().getStringExtra(CHAMADA_ID));
+
+        Chamada chamada = new Chamada(data, local, tipo);
+
+        int p = 0, j = 0, f = 0;
+        for (int i = 0; i < presencaList.size(); i++) {
+            DocumentReference docPresenca = mFirestore.collection(Presenca.COLLECTION_PRESENCA)
+                    .document(refPresencaList.get(i).getId());
+            Presenca presenca = refPresencaList.get(i).toObject(Presenca.class);
+
+            presenca.setDate(data);
+            presenca.setLocal(chamada.getLocal());
+            presenca.setMes(month);
+            presenca.setIdChamada(doc.getId());
+            presenca.setName(presencaList.get(i).getName());
+            presenca.setUserId(presencaList.get(i).getUserId());
+            presenca.setTipo(presencaList.get(i).getTipo());
+
+            switch (presencaList.get(i).getTipo()) {
+                case Presenca.P:
+                    p++;
+                    break;
+                case Presenca.J:
+                    j++;
+                    break;
+                case Presenca.F:
+                    f++;
+                    break;
+            }
+
+            docPresenca.set(presenca);
+        }
+
+        chamada.setTotalAtletas(presencaList.size());
+        chamada.setTotalPresencas(p);
+        chamada.setTotalJustificativas(j);
+        chamada.setTotalFaltas(f);
+
+        doc.set(chamada);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

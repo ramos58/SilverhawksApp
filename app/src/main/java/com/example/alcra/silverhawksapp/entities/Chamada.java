@@ -11,6 +11,10 @@ public class Chamada {
     private String local;
     private Tipo tipo;
     private String chamadaId;
+    private int totalAtletas;
+    private int totalPresencas;
+    private int totalJustificativas;
+    private int totalFaltas;
 
     public Chamada(String date, String local, Tipo tipo) {
         this.date = date;
@@ -19,6 +23,46 @@ public class Chamada {
     }
 
     public Chamada() {
+    }
+
+    public String getChamadaId() {
+        return chamadaId;
+    }
+
+    public void setChamadaId(String chamadaId) {
+        this.chamadaId = chamadaId;
+    }
+
+    public int getTotalAtletas() {
+        return totalAtletas;
+    }
+
+    public void setTotalAtletas(int totalAtletas) {
+        this.totalAtletas = totalAtletas;
+    }
+
+    public int getTotalPresencas() {
+        return totalPresencas;
+    }
+
+    public void setTotalPresencas(int totalPresencas) {
+        this.totalPresencas = totalPresencas;
+    }
+
+    public int getTotalJustificativas() {
+        return totalJustificativas;
+    }
+
+    public void setTotalJustificativas(int totalJustificativas) {
+        this.totalJustificativas = totalJustificativas;
+    }
+
+    public int getTotalFaltas() {
+        return totalFaltas;
+    }
+
+    public void setTotalFaltas(int totalFaltas) {
+        this.totalFaltas = totalFaltas;
     }
 
     public Tipo getTipo() {
@@ -54,5 +98,9 @@ public class Chamada {
         Tipo(int tipo) {
             this.tipo = tipo;
         }
+    }
+
+    public int Porcent(int parcial, int total){
+        return (parcial*100)/total;
     }
 }

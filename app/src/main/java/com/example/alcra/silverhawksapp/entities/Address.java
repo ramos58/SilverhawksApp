@@ -7,12 +7,21 @@ package com.example.alcra.silverhawksapp.entities;
 public class Address {
     private String street;
     private String number;
+    private String complement;
     private String neighborhood;
     private String cep;
     private String city;
     private String state;
 
-    public Address(){
+    public Address() {
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public void setComplement(String complement) {
+        this.complement = complement;
     }
 
     public String getStreet() {

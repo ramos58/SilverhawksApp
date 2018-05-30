@@ -48,6 +48,16 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
         holder.dataText.setText(chamada.getDate());
         holder.localText.setText(chamada.getLocal());
         holder.tipoText.setText(chamada.getTipo().toString());
+        if (chamada.getTotalPresencas() != 0) {
+            holder.presPercentText.setText(String.valueOf(chamada.getTotalPresencas()));
+            holder.justPercentText.setText(String.valueOf(chamada.getTotalJustificativas()));
+            holder.faltaPercentText.setText(String.valueOf(chamada.getTotalFaltas()));
+        }
+        else{
+            holder.presPercentText.setText("0");
+            holder.justPercentText.setText("0");
+            holder.faltaPercentText.setText("0");
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +78,9 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
         public TextView dataText;
         public TextView localText;
         public TextView tipoText;
+        public TextView presPercentText;
+        public TextView justPercentText;
+        public TextView faltaPercentText;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -75,6 +88,10 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
             dataText = itemView.findViewById(R.id.tv_data);
             localText = itemView.findViewById(R.id.tv_local);
             tipoText = itemView.findViewById(R.id.tv_tipo);
+            presPercentText = itemView.findViewById(R.id.tv_presencaporcentagem);
+            justPercentText = itemView.findViewById(R.id.tv_justificativaporcentagem);
+            faltaPercentText = itemView.findViewById(R.id.tv_faltaporcentagem);
+
         }
     }
 

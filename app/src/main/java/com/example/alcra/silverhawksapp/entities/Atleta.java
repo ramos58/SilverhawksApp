@@ -1,5 +1,7 @@
 package com.example.alcra.silverhawksapp.entities;
 
+import java.util.List;
+
 public class Atleta {
 
     public static final String COLLECTION_ATLETAS = "atletas";
@@ -13,9 +15,12 @@ public class Atleta {
     private String email;
     private Address address;
     private String number;
-    private Posicao posicao;
-    private Unidade unidade;
-    private Boolean isActive;
+    //private Posicao posicao;
+    //private Unidade unidade;
+    //private Boolean isActive;
+    private String posicao;
+    private String unidade;
+    private String isActive;
 
     public Atleta() {
     }
@@ -100,61 +105,84 @@ public class Atleta {
         this.number = number;
     }
 
-    public Posicao getPosicao() {
+//    public Posicao getPosicao() {
+//        return posicao;
+//    }
+//
+//    public void setPosicao(Posicao posicao) {
+//        this.posicao = posicao;
+//    }
+//
+//    public Unidade getUnidade() {
+//        return unidade;
+//    }
+//
+//    public void setUnidade(Unidade unidade) {
+//        this.unidade = unidade;
+//    }
+//
+//    public Boolean getActive() {
+//        return isActive;
+//    }
+//
+//    public void setActive(Boolean active) {
+//        isActive = active;
+//    }
+//
+//    public enum Unidade{
+//        ATAQUE(1),
+//        DEFESA(2),
+//        ST(3);
+//
+//        int unidade;
+//
+//        Unidade(int unidade) {
+//            this.unidade = unidade;
+//        }
+//    }
+//
+//    public enum Posicao{
+//        QB(1),
+//        WR(2),
+//        RB(3),
+//        OL(4),
+//        DL(5),
+//        LB(6),
+//        CB(7),
+//        S(8),
+//        P(9),
+//        K(10),
+//        LS(11),
+//        H(12);
+//
+//        int posicao;
+//
+//        Posicao(int posicao) {
+//            this.posicao = posicao;
+//        }
+//    }
+
+    public String getPosicao() {
         return posicao;
     }
 
-    public void setPosicao(Posicao posicao) {
+    public void setPosicao(String posicao) {
         this.posicao = posicao;
     }
 
-    public Unidade getUnidade() {
+    public String getUnidade() {
         return unidade;
     }
 
-    public void setUnidade(Unidade unidade) {
+    public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
 
-    public Boolean getActive() {
+    public String getActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setActive(String isActive) {
+        this.isActive = isActive;
     }
-
-    public enum Unidade{
-        ATAQUE(1),
-        DEFESA(2),
-        ST(3);
-
-        int unidade;
-
-        Unidade(int unidade) {
-            this.unidade = unidade;
-        }
-    }
-
-    public enum Posicao{
-        QB(1),
-        WR(2),
-        RB(3),
-        OL(4),
-        DL(5),
-        LB(6),
-        CB(7),
-        S(8),
-        P(9),
-        K(10),
-        LS(11),
-        H(12);
-
-        int posicao;
-
-        Posicao(int posicao) {
-            this.posicao = posicao;
-        }
-    }
-
 }
