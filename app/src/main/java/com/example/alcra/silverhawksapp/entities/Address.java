@@ -1,10 +1,12 @@
 package com.example.alcra.silverhawksapp.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by alcra on 27/05/2018.
  */
 
-public class Address {
+public class Address implements Serializable {
     private String street;
     private String number;
     private String complement;

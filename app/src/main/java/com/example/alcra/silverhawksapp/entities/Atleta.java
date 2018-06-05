@@ -1,8 +1,9 @@
 package com.example.alcra.silverhawksapp.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Atleta {
+public class Atleta implements Serializable {
 
     public static final String COLLECTION_ATLETAS = "atletas";
     private String nameComp;
@@ -21,6 +22,16 @@ public class Atleta {
     private String posicao;
     private String unidade;
     private String isActive;
+
+    public String getPicURL() {
+        return picURL;
+    }
+
+    public void setPicURL(String picURL) {
+        this.picURL = picURL;
+    }
+
+    private String picURL;
 
     public Atleta() {
     }

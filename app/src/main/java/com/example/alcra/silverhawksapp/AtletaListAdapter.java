@@ -1,5 +1,6 @@
 package com.example.alcra.silverhawksapp;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.alcra.silverhawksapp.entities.Atleta;
-import com.example.alcra.silverhawksapp.entities.Chamada;
 
 import java.util.List;
 
@@ -20,9 +21,11 @@ public class AtletaListAdapter extends RecyclerView.Adapter<AtletaListAdapter.Vi
 
     private List<Atleta> atletaList;
     private OnClick onClick;
+    private Context context;
 
-    public AtletaListAdapter(List<Atleta> atletaList) {
+    public AtletaListAdapter(Context context, List<Atleta> atletaList) {
         this.atletaList = atletaList;
+        this.context = context;
     }
 
     public void setOnClick(OnClick onClick) {
@@ -37,14 +40,15 @@ public class AtletaListAdapter extends RecyclerView.Adapter<AtletaListAdapter.Vi
 
     @Override
     public void onBindViewHolder(final AtletaListAdapter.ViewHolder holder, int position) {
-//        final Atleta atleta = atletaList.get(holder.getAdapterPosition());
-//
-//        holder.numberText.setText(atleta.toString());
+        final Atleta atleta = atletaList.get(holder.getAdapterPosition());
+
+        holder.numberText.setText(atleta.getNumber());
+//        Glide.with(context).load(atleta.getPicURL()).into(holder.photoImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(onClick != null){
-                    onClick.click(holder.getAdapterPosition());
+                    onClick.click(atleta);
                 }
             }
         });
@@ -56,7 +60,7 @@ public class AtletaListAdapter extends RecyclerView.Adapter<AtletaListAdapter.Vi
     }
 
     public interface OnClick{
-        void click(int position);
+        void click(Atleta atleta);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

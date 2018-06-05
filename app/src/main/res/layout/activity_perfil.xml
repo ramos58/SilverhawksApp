@@ -30,13 +30,14 @@
                 android:id="@+id/iv_photo"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="4dp"
                 android:src="@drawable/pic_ramos_quad"
                 app:civ_border_color="@color/white_silverhawks"
                 app:civ_border_width="2dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_nome"
@@ -45,7 +46,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Amanda Lúcia Carstens Ramos"
+                android:text="Nome Completo"
                 android:textColor="@color/black_silverhawks"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -314,6 +315,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
                 android:gravity="left"
                 android:text="80.035-230\nRua Coronel Amazonas Marcondes,\n1065 - Bloco B - Apto 204 - Cabral\nCuritiba/PR"
                 android:textColor="@color/black_silverhawks"
