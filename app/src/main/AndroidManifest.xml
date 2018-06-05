@@ -29,6 +29,10 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".EditChamadaActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".AtletasActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".PerfilActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -25,7 +25,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <TextView
-        android:id="@+id/tv_local"
+        android:id="@+id/tv_posicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -45,12 +45,12 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_local"
-        app:layout_constraintStart_toEndOf="@+id/tv_local"
-        app:layout_constraintTop_toTopOf="@+id/tv_local" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_posicao"
+        app:layout_constraintStart_toEndOf="@+id/tv_posicao"
+        app:layout_constraintTop_toTopOf="@+id/tv_posicao" />
 
     <TextView
-        android:id="@+id/tv_data"
+        android:id="@+id/tv_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -59,7 +59,7 @@
         android:textColor="@color/black_silverhawks"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_local"
+        app:layout_constraintTop_toBottomOf="@+id/tv_posicao"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="76dp" />
 
@@ -70,9 +70,9 @@
         android:ems="10"
         android:inputType="date"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_data"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_nome"
         app:layout_constraintStart_toStartOf="@+id/et_local"
-        app:layout_constraintTop_toTopOf="@+id/tv_data" />
+        app:layout_constraintTop_toTopOf="@+id/tv_nome" />
 
     <RadioGroup
         android:id="@+id/rg_tipo"
@@ -81,7 +81,7 @@
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_data">
+        app:layout_constraintTop_toBottomOf="@+id/tv_nome">
 
         <android.support.v7.widget.AppCompatRadioButton
             android:id="@+id/rb_pratico"

@@ -17,7 +17,6 @@ import android.widget.RadioGroup;
 import com.example.alcra.silverhawksapp.entities.Atleta;
 import com.example.alcra.silverhawksapp.entities.Chamada;
 import com.example.alcra.silverhawksapp.entities.Presenca;
-import com.example.alcra.silverhawksapp.utils.DateUtils;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -26,7 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -65,7 +63,7 @@ public class NovaChamadaActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            setTitle("Nova Chamada");
+            setTitle(getString(R.string.nomeTelaNovaChamada));
         }
     }
 

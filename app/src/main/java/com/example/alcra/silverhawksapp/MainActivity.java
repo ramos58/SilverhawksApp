@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity{
     private FirebaseAuth auth;
     private String UID;
     private Button chamadaButton;
+    private Button atletasButton;
     private TextView userTextView;
     private TextView numberTextView;
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.include);
-        toolbar.setTitle("Sivlerhawks App");
+        toolbar.setTitle(R.string.nomeTelaPrincipal);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -59,6 +60,13 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ChamadaActivity.class));
+            }
+        });
+        atletasButton = findViewById(R.id.bt_atletas);
+        atletasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AtletasActivity.class));
             }
         });
     }

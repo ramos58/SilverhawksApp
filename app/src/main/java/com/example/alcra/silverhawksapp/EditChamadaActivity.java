@@ -107,6 +107,7 @@ public class EditChamadaActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setTitle(getString(R.string.nomeTelaEditChamada));
         }
     }
 

@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">Silver Hawks</string>
+    <string name="app_name">Silverhawks</string>
     <string name="logout">Logout</string>
     <string name="perfil">Perfil</string>
     <string name="text_editando">Editando</string>
     <string name="text_enviando">Enviando</string>
+    <string name="nomeTelaEditChamada">Editar Chamada</string>
+    <string name="nomeTelaNovaChamada">Nova Chamada</string>
+    <string name="nomeTelaPrincipal">Sivlerhawks App</string>
+    <string name="nomeTelaPerfil">Atleta Silverhawks</string>
+    <string name="nomeTelaAtletas">Atletas</string>
 </resources>

@@ -45,10 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //Inicia Firebase Auth
         auth = FirebaseAuth.getInstance();
-
-        //Verifica se já está logado, se sim vai para a tela principal
-        if(auth.getCurrentUser() != null)
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
     }
 
     public void onClick(View view) {

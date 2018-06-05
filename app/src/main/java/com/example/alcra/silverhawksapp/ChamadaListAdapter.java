@@ -1,22 +1,14 @@
 package com.example.alcra.silverhawksapp;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.example.alcra.silverhawksapp.entities.Chamada;
-import com.example.alcra.silverhawksapp.entities.Presenca;
 
 import java.util.List;
-
-import static com.example.alcra.silverhawksapp.entities.Presenca.F;
-import static com.example.alcra.silverhawksapp.entities.Presenca.J;
-import static com.example.alcra.silverhawksapp.entities.Presenca.P;
 
 /**
  * Created by alcra on 27/05/2018.
@@ -85,13 +77,12 @@ public class ChamadaListAdapter extends RecyclerView.Adapter<ChamadaListAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
 
-            dataText = itemView.findViewById(R.id.tv_data);
-            localText = itemView.findViewById(R.id.tv_local);
+            dataText = itemView.findViewById(R.id.tv_nome);
+            localText = itemView.findViewById(R.id.tv_posicao);
             tipoText = itemView.findViewById(R.id.tv_tipo);
             presPercentText = itemView.findViewById(R.id.tv_presencaporcentagem);
             justPercentText = itemView.findViewById(R.id.tv_justificativaporcentagem);
             faltaPercentText = itemView.findViewById(R.id.tv_faltaporcentagem);
-
         }
     }
 

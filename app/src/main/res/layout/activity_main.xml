@@ -90,19 +90,19 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/bt_mensalidade"
+        android:id="@+id/bt_atletas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="8dp"
         android:drawablePadding="16dp"
-        android:drawableTop="@drawable/icon_money"
+        android:drawableTop="@drawable/icon_people"
         android:ellipsize="end"
         android:maxLines="1"
         android:paddingBottom="24dp"
         android:paddingTop="24dp"
-        android:text="MENSALIDADE"
+        android:text="ATLETAS"
         android:textColor="@color/white_silverhawks"
         android:textSize="16sp"
         android:textStyle="bold"
