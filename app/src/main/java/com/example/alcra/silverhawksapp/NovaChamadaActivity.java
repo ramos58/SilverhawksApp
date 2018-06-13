@@ -1,6 +1,9 @@
 package com.example.alcra.silverhawksapp;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -11,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -24,7 +29,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -54,6 +62,45 @@ public class NovaChamadaActivity extends AppCompatActivity {
 
         initToolbar();
         initList();
+        initDatePicker();
+        initPlacePicker();
+    }
+
+    private void initPlacePicker() {
+        localEditText.setFocusable(false);
+        localEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(NovaChamadaActivity.this);
+                builder.setItems(R.array.practice_places, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        localEditText.setText(Arrays.asList(getResources().getStringArray(R.array.practice_places)).get(i));
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setTitle("Selecione o local:");
+                builder.create().show();
+            }
+        });
+    }
+
+    private void initDatePicker() {
+        dataEditText.setFocusable(false);
+        dataEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(NovaChamadaActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        dataEditText.setText(String.format(getString(R.string.date_place_holder), i2, i1 + 1, i));
+                    }
+                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+
+                datePickerDialog.show();
+            }
+        });
     }
 
 

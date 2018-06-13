@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="practice_places">
+        <item>Parque Barigui</item>
+        <item>Complexo Esportivo Avelino</item>
+        <item>Caiuá</item>
+        <item>Quadra Grama Sintética</item>
+        <item>Casa Amanda</item>
+        <item>Casa Boabaid</item>
+        <item>Casa Atleta</item>
+    </array>
+</resources>

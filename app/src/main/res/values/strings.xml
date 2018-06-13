@@ -9,4 +9,5 @@
     <string name="nomeTelaPrincipal">Sivlerhawks App</string>
     <string name="nomeTelaPerfil">Atleta Silverhawks</string>
     <string name="nomeTelaAtletas">Atletas</string>
+    <string name="date_place_holder">%d/%d/%d</string>
 </resources>
