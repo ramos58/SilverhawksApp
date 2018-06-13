@@ -107,9 +107,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.menu_logout:
                 logoutUser();
                 break;
-            case R.id.menu_perfil:
-                startActivity(new Intent(ProfileActivity.this, ProfileActivity.class));
-                break;
         }
 
         return super.onOptionsItemSelected(item);

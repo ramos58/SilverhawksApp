@@ -114,9 +114,6 @@ public class MainActivity extends AppCompatActivity{
             case R.id.menu_logout:
                 logoutUser();
                 break;
-            case R.id.menu_perfil:
-                startActivity(new Intent(MainActivity.this, ChamadaActivity.class));
-                break;
         }
 
         return super.onOptionsItemSelected(item);
