@@ -19,7 +19,7 @@
         android:id="@+id/iv_item_atleta"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/pic_ramos_quad"
+        app:srcCompat="@drawable/pic_fundo_atleta"
         android:scaleType="centerInside"
         android:adjustViewBounds="true" />
 
@@ -41,9 +41,9 @@
                 android:layout_marginTop="3dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="#58"
+                android:text="00"
                 android:textColor="@color/white_silverhawks"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>

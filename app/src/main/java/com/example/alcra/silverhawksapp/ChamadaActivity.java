@@ -122,17 +122,17 @@ public class ChamadaActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 break;
-//            case R.id.teste:
-//                try {
-//                    addAtletas();
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                break;
+            case R.id.teste:
+                try {
+                    addAtletas();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -176,8 +176,11 @@ public class ChamadaActivity extends AppCompatActivity {
             user.setPosicao(atletaExcel.posicao);
             user.setUnidade(atletaExcel.unidade);
             user.setActive(atletaExcel.isActive);
+            user.setContatoNome(atletaExcel.contatoNome);
+            user.setContatoParentesco(atletaExcel.contatoParentesco);
+            user.setContatoTel(atletaExcel.contatoTel);
+            user.setPicURL(atletaExcel.picURL);
 
-            //athlete.add(user);
             atletas.add(user);
         }
     }

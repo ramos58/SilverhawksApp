@@ -22,6 +22,34 @@ public class Atleta implements Serializable {
     private String posicao;
     private String unidade;
     private String isActive;
+    private String picURL;
+    private String contatoNome;
+    private String contatoParentesco;
+    private String contatoTel;
+
+    public String getContatoNome() {
+        return contatoNome;
+    }
+
+    public void setContatoNome(String contatoNome) {
+        this.contatoNome = contatoNome;
+    }
+
+    public String getContatoParentesco() {
+        return contatoParentesco;
+    }
+
+    public void setContatoParentesco(String contatoParentesco) {
+        this.contatoParentesco = contatoParentesco;
+    }
+
+    public String getContatoTel() {
+        return contatoTel;
+    }
+
+    public void setContatoTel(String contatoTel) {
+        this.contatoTel = contatoTel;
+    }
 
     public String getPicURL() {
         return picURL;
@@ -30,8 +58,6 @@ public class Atleta implements Serializable {
     public void setPicURL(String picURL) {
         this.picURL = picURL;
     }
-
-    private String picURL;
 
     public Atleta() {
     }

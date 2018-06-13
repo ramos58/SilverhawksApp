@@ -42,8 +42,8 @@ public class AtletaListAdapter extends RecyclerView.Adapter<AtletaListAdapter.Vi
     public void onBindViewHolder(final AtletaListAdapter.ViewHolder holder, int position) {
         final Atleta atleta = atletaList.get(holder.getAdapterPosition());
 
-        holder.numberText.setText(atleta.getNumber());
-//        Glide.with(context).load(atleta.getPicURL()).into(holder.photoImageView);
+        holder.numberText.setText(atleta.getLastName()+" #"+atleta.getNumber());
+        Glide.with(context).load(atleta.getPicURL()).into(holder.photoImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

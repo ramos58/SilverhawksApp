@@ -24,6 +24,10 @@ public class AtletaExcel {
     public String posicao;
     public String unidade;
     public String isActive;
+    public String picURL;
+    public String contatoNome;
+    public String contatoParentesco;
+    public String contatoTel;
 
     public class Atletas {
         public List<AtletaExcel> atletas = new ArrayList<>();
