@@ -1,424 +1,520 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+<RelativeLayout
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    app:layout_behavior = "@string/appbar_scrolling_view_behavior">
 
-    <android.support.constraint.ConstraintLayout
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include">
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/toolbar" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/include">
+            <android.support.v7.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_photo"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="4dp"
-                    android:src="@drawable/pic_fundo_atleta"
-                    app:civ_border_color="@color/white_silverhawks"
-                    app:civ_border_width="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_photo"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/pic_fundo_atleta"
+                        app:civ_border_color="@color/white_silverhawks"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_nome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Nome Completo"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/iv_photo"
-                    app:layout_constraintTop_toTopOf="@id/iv_photo" />
+                    <TextView
+                        android:id="@+id/tv_nome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Nome Completo"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_photo"
+                        app:layout_constraintTop_toTopOf="@id/iv_photo" />
 
-                <TextView
-                    android:id="@+id/tv_posicao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Defesa - Linebacker"
-                    android:textColor="@color/gray1_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@id/tv_status"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/iv_photo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_nome" />
+                    <TextView
+                        android:id="@+id/tv_posicao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="Defesa - Linebacker"
+                        android:textColor="@color/gray1_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toTopOf="@id/tv_status"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_photo"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_nome" />
 
-                <TextView
-                    android:id="@+id/tv_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="19dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:text="Atleta ativa"
-                    android:textColor="@color/gray1_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_photo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/iv_photo"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_posicao" />
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="19dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="Atleta ativa"
+                        android:textColor="@color/gray1_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_photo"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/iv_photo"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_posicao" />
 
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/card2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card">
+            <android.support.v7.widget.CardView
+                android:id="@+id/card2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card">
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/iv_rgicon"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/icon_doc" />
+                    <ImageView
+                        android:id="@+id/iv_rgicon"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/icon_doc" />
 
-                <TextView
-                    android:id="@+id/tv_rg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="RG:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_rgicon"
-                    app:layout_constraintStart_toEndOf="@id/iv_rgicon"
-                    app:layout_constraintTop_toTopOf="@id/iv_rgicon" />
+                    <TextView
+                        android:id="@+id/tv_rg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="RG:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_rgicon"
+                        app:layout_constraintStart_toEndOf="@id/iv_rgicon"
+                        app:layout_constraintTop_toTopOf="@id/iv_rgicon" />
 
-                <TextView
-                    android:id="@+id/tv_rgview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="8.729.893-0"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_rg"
-                    app:layout_constraintStart_toEndOf="@id/tv_rg"
-                    app:layout_constraintTop_toTopOf="@+id/tv_rg" />
+                    <TextView
+                        android:id="@+id/tv_rgview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="8.729.893-0"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_rg"
+                        app:layout_constraintStart_toEndOf="@id/tv_rg"
+                        app:layout_constraintTop_toTopOf="@+id/tv_rg" />
 
-                <ImageView
-                    android:id="@+id/iv_cpficon"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_rgview"
-                    app:srcCompat="@drawable/icon_doc" />
+                    <ImageView
+                        android:id="@+id/iv_cpficon"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_rgview"
+                        app:srcCompat="@drawable/icon_doc" />
 
-                <TextView
-                    android:id="@+id/tv_cpf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="CPF:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_cpficon"
-                    app:layout_constraintStart_toEndOf="@+id/iv_cpficon"
-                    app:layout_constraintTop_toTopOf="@+id/iv_cpficon" />
+                    <TextView
+                        android:id="@+id/tv_cpf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="CPF:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_cpficon"
+                        app:layout_constraintStart_toEndOf="@+id/iv_cpficon"
+                        app:layout_constraintTop_toTopOf="@+id/iv_cpficon" />
 
-                <TextView
-                    android:id="@+id/tv_cpfview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="080.375.679-82"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_cpf"
-                    app:layout_constraintStart_toEndOf="@id/tv_cpf"
-                    app:layout_constraintTop_toTopOf="@+id/tv_cpf" />
+                    <TextView
+                        android:id="@+id/tv_cpfview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="080.375.679-82"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_cpf"
+                        app:layout_constraintStart_toEndOf="@id/tv_cpf"
+                        app:layout_constraintTop_toTopOf="@+id/tv_cpf" />
 
-                <ImageView
-                    android:id="@+id/iv_cakeicon"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_cpfview"
-                    app:srcCompat="@drawable/icon_cake" />
+                    <ImageView
+                        android:id="@+id/iv_cakeicon"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_cpfview"
+                        app:srcCompat="@drawable/icon_cake" />
 
-                <TextView
-                    android:id="@+id/tv_birthday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="Aniversário:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_cakeicon"
-                    app:layout_constraintStart_toEndOf="@id/iv_cakeicon"
-                    app:layout_constraintTop_toTopOf="@id/iv_cakeicon" />
+                    <TextView
+                        android:id="@+id/tv_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Aniversário:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_cakeicon"
+                        app:layout_constraintStart_toEndOf="@id/iv_cakeicon"
+                        app:layout_constraintTop_toTopOf="@id/iv_cakeicon" />
 
-                <TextView
-                    android:id="@+id/tv_birthdayview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="28/12/1992"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_birthday"
-                    app:layout_constraintStart_toEndOf="@id/tv_birthday"
-                    app:layout_constraintTop_toTopOf="@+id/tv_birthday" />
+                    <TextView
+                        android:id="@+id/tv_birthdayview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="28/12/1992"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_birthday"
+                        app:layout_constraintStart_toEndOf="@id/tv_birthday"
+                        app:layout_constraintTop_toTopOf="@+id/tv_birthday" />
 
-                <ImageView
-                    android:id="@+id/iv_telicon"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_birthdayview"
-                    app:srcCompat="@drawable/icon_tel" />
+                    <ImageView
+                        android:id="@+id/iv_telicon"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_birthdayview"
+                        app:srcCompat="@drawable/icon_tel" />
 
-                <TextView
-                    android:id="@+id/tv_cel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="Celular:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_telicon"
-                    app:layout_constraintStart_toEndOf="@id/iv_telicon"
-                    app:layout_constraintTop_toTopOf="@id/iv_telicon" />
+                    <TextView
+                        android:id="@+id/tv_cel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Celular:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_telicon"
+                        app:layout_constraintStart_toEndOf="@id/iv_telicon"
+                        app:layout_constraintTop_toTopOf="@id/iv_telicon" />
 
-                <TextView
-                    android:id="@+id/tv_celview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="(41) 99935-0371"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_cel"
-                    app:layout_constraintStart_toEndOf="@id/tv_cel"
-                    app:layout_constraintTop_toTopOf="@+id/tv_cel" />
+                    <TextView
+                        android:id="@+id/tv_celview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="(41) 99935-0371"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_cel"
+                        app:layout_constraintStart_toEndOf="@id/tv_cel"
+                        app:layout_constraintTop_toTopOf="@+id/tv_cel" />
 
-                <ImageView
-                    android:id="@+id/iv_emailicon"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_celview"
-                    app:srcCompat="@drawable/icon_email" />
+                    <ImageView
+                        android:id="@+id/iv_emailicon"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_celview"
+                        app:srcCompat="@drawable/icon_email" />
 
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text="E-mail:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_emailicon"
-                    app:layout_constraintStart_toEndOf="@id/iv_emailicon"
-                    app:layout_constraintTop_toTopOf="@id/iv_emailicon" />
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="E-mail:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_emailicon"
+                        app:layout_constraintStart_toEndOf="@id/iv_emailicon"
+                        app:layout_constraintTop_toTopOf="@id/iv_emailicon" />
 
-                <TextView
-                    android:id="@+id/tv_emailview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="alc.ramos@yahoo.com.br"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_email"
-                    app:layout_constraintStart_toEndOf="@id/tv_email"
-                    app:layout_constraintTop_toTopOf="@+id/tv_email" />
+                    <TextView
+                        android:id="@+id/tv_emailview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="alc.ramos@yahoo.com.br"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_email"
+                        app:layout_constraintStart_toEndOf="@id/tv_email"
+                        app:layout_constraintTop_toTopOf="@+id/tv_email" />
 
-                <ImageView
-                    android:id="@+id/iv_mapicon"
-                    android:layout_width="25dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_emailview"
-                    app:srcCompat="@drawable/icon_map" />
+                    <ImageView
+                        android:id="@+id/iv_mapicon"
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_emailview"
+                        app:srcCompat="@drawable/icon_map" />
 
-                <TextView
-                    android:id="@+id/tv_end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Endereço:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_mapicon"
-                    app:layout_constraintStart_toEndOf="@id/iv_mapicon"
-                    app:layout_constraintTop_toTopOf="@id/iv_mapicon" />
+                    <TextView
+                        android:id="@+id/tv_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Endereço:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_mapicon"
+                        app:layout_constraintStart_toEndOf="@id/iv_mapicon"
+                        app:layout_constraintTop_toTopOf="@id/iv_mapicon" />
 
-                <TextView
-                    android:id="@+id/tv_endview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="left"
-                    android:text="80.035-230\nRua Coronel Amazonas Marcondes,\n1065 - Bloco B - Apto 204 - Cabral\nCuritiba/PR"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/tv_end"
-                    app:layout_constraintTop_toTopOf="@+id/tv_end" />
+                    <TextView
+                        android:id="@+id/tv_endview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:gravity="left"
+                        android:text="Endereço"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@id/tv_end"
+                        app:layout_constraintTop_toTopOf="@+id/tv_end" />
 
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/card3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card2">
+            <android.support.v7.widget.CardView
+                android:id="@+id/card4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card3">
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/titulo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Pessoa para contato"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/titulo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Plano de Saúde"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_contact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Nome:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/titulo" />
+                    <TextView
+                        android:id="@+id/tv_contact2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Empresa:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/titulo2" />
 
-                <TextView
-                    android:id="@+id/tv_contactview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Eliane Ramos (mãe)"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_contact"
-                    app:layout_constraintStart_toEndOf="@id/tv_contact"
-                    app:layout_constraintTop_toTopOf="@+id/tv_contact" />
+                    <TextView
+                        android:id="@+id/tv_contactview2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="-"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_contact2"
+                        app:layout_constraintStart_toEndOf="@id/tv_contact2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_contact2" />
 
-                <TextView
-                    android:id="@+id/tv_contactnumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Celular:"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_contactview" />
+                    <TextView
+                        android:id="@+id/tv_contactnumber2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Número da carteira:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_contactview2" />
 
-                <TextView
-                    android:id="@+id/tv_contactnumberview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="(41) 99977-5795"
-                    android:textColor="@color/black_silverhawks"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_contactnumber"
-                    app:layout_constraintStart_toEndOf="@id/tv_contactnumber"
-                    app:layout_constraintTop_toTopOf="@+id/tv_contactnumber" />
+                    <TextView
+                        android:id="@+id/tv_contactnumberview2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="-"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_contactnumber2"
+                        app:layout_constraintStart_toEndOf="@id/tv_contactnumber2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_contactnumber2" />
 
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
 
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/card3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card2">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/titulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Pessoa para contato"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Nome:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/titulo" />
+
+                    <TextView
+                        android:id="@+id/tv_contactview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Eliane Ramos (mãe)"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_contact"
+                        app:layout_constraintStart_toEndOf="@id/tv_contact"
+                        app:layout_constraintTop_toTopOf="@+id/tv_contact" />
+
+                    <TextView
+                        android:id="@+id/tv_contactnumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Celular:"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_contactview" />
+
+                    <TextView
+                        android:id="@+id/tv_contactnumberview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="(41) 99977-5795"
+                        android:textColor="@color/black_silverhawks"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_contactnumber"
+                        app:layout_constraintStart_toEndOf="@id/tv_contactnumber"
+                        app:layout_constraintTop_toTopOf="@+id/tv_contactnumber" />
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>

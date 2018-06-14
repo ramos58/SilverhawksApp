@@ -189,8 +189,8 @@ public class Atleta implements Serializable {
 //        S(8),
 //        P(9),
 //        K(10),
-//        LS(11),
-//        H(12);
+//        H(11),
+//        LS(12);
 //
 //        int posicao;
 //

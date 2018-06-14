@@ -3,11 +3,28 @@
 
     <array name="practice_places">
         <item>Parque Barigui</item>
-        <item>Complexo Esportivo Avelino</item>
-        <item>Caiuá</item>
+        <item>Centro de Esportes Avelino</item>
+        <item>Campo do Caiuá</item>
         <item>Quadra Grama Sintética</item>
-        <item>Casa Amanda</item>
+        <item>Casa Ramos</item>
         <item>Casa Boabaid</item>
         <item>Casa Atleta</item>
     </array>
+
+    <string-array name="position_array">
+        <item>QB</item>
+        <item>WR</item>
+        <item>RB</item>
+        <item>OL</item>
+        <item>DL</item>
+        <item>LB</item>
+        <item>CB</item>
+        <item>S</item>
+    </string-array>
+
+    <string-array name="unity_array">
+        <item>Ataque</item>
+        <item>Defesa</item>
+    </string-array>
+
 </resources>

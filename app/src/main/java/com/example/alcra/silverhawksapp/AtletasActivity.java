@@ -44,7 +44,6 @@ public class AtletasActivity extends AppCompatActivity {
             @Override
             public void click(Atleta atleta) {
                 startActivity(PerfilActivity.newIntent(AtletasActivity.this,atleta));
-                //startActivity(new Intent(AtletasActivity.this,PerfilActivity.class));
             }
         });
 
@@ -64,7 +63,6 @@ public class AtletasActivity extends AppCompatActivity {
                             if (doc.getType() == DocumentChange.Type.ADDED) {
                                 Atleta atleta = doc.getDocument().toObject(Atleta.class);
                                 atletaList.add(atleta);
-                                //refChamada.add(doc.getDocument().getReference());
                                 atletaListAdapter.notifyDataSetChanged();
                             }
                         }

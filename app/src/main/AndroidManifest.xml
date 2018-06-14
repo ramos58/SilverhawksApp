@@ -33,6 +33,9 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".PerfilActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".EditPerfilActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
 
 </manifest>

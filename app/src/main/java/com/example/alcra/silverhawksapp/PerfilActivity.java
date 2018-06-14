@@ -133,7 +133,8 @@ public class PerfilActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_edit:
-
+                Atleta atleta = (Atleta) getIntent().getExtras().getSerializable(ATLETA);
+                startActivity(EditPerfilActivity.newIntent(PerfilActivity.this,atleta));
                 break;
         }
 
