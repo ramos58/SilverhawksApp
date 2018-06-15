@@ -15,9 +15,11 @@ import com.example.alcra.silverhawksapp.entities.Address;
 import com.example.alcra.silverhawksapp.entities.Atleta;
 import com.example.alcra.silverhawksapp.entities.AtletaExcel;
 import com.example.alcra.silverhawksapp.entities.Chamada;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -139,49 +141,61 @@ public class ChamadaActivity extends AppCompatActivity {
     }
 
     private void addAtletas() throws ParseException, IOException {
-        CollectionReference atletas = mFirestore.collection(Atleta.COLLECTION_ATLETAS);
 
-        getBaseContext().getAssets().open("atletas.json");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("atletas.json")));
-
-        Gson gson = new Gson();
-        List<AtletaExcel> list = gson.fromJson(bufferedReader,AtletaExcel.Atletas.class).atletas;
-        List<Atleta> athlete = new ArrayList<>();
-        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("MM-dd-yy");
-        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd/MM/YYYY");
-
-        for (AtletaExcel atletaExcel:
-                list) {
-            Atleta user = new Atleta();
-            Address address = new Address();
-            user.setNameComp(atletaExcel.nomeComp);
-            user.setFirstName(atletaExcel.firstName);
-            user.setLastName(atletaExcel.lastName);
-            user.setRg(atletaExcel.rg);
-            user.setCpf(atletaExcel.cpf);
-            user.setBirthday(simpleDateFormat2.format((simpleDateFormat1.parse(atletaExcel.birthday))));
-            user.setCelPhone(atletaExcel.celPhone);
-            user.setEmail(atletaExcel.email);
-
-            address.setStreet(atletaExcel.street);
-            address.setNumber(atletaExcel.addressNumber);
-            address.setComplement(atletaExcel.complement);
-            address.setNeighborhood(atletaExcel.neighborhood);
-            address.setCep(atletaExcel.cep);
-            address.setCity(atletaExcel.city);
-            address.setState(atletaExcel.state);
-            user.setAddress(address);
-
-            user.setNumber(atletaExcel.number);
-            user.setPosicao(atletaExcel.posicao);
-            user.setUnidade(atletaExcel.unidade);
-            user.setActive(atletaExcel.isActive);
-            user.setContatoNome(atletaExcel.contatoNome);
-            user.setContatoParentesco(atletaExcel.contatoParentesco);
-            user.setContatoTel(atletaExcel.contatoTel);
-            user.setPicURL(atletaExcel.picURL);
-
-            atletas.add(user);
-        }
+//        mFirestore.collection(Atleta.COLLECTION_ATLETAS).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot documentSnapshots) {
+//                for (DocumentSnapshot document:documentSnapshots.getDocuments()) {
+//                    Atleta atleta = document.toObject(Atleta.class);
+//                    atleta.setHealthPlanNome("-");
+//                    atleta.setHealthPlanNumber("-");
+//
+//                    mFirestore.collection(Atleta.COLLECTION_ATLETAS).document(document.getId()).set(atleta);
+//                }
+//            }
+//        });
+//
+//        getBaseContext().getAssets().open("atletas.json");
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("atletas.json")));
+//
+//        Gson gson = new Gson();
+//        List<AtletaExcel> list = gson.fromJson(bufferedReader,AtletaExcel.Atletas.class).atletas;
+//        List<Atleta> athlete = new ArrayList<>();
+//        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("MM-dd-yy");
+//        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("dd/MM/YYYY");
+//
+//        for (AtletaExcel atletaExcel:
+//                list) {
+//            Atleta user = new Atleta();
+//            Address address = new Address();
+//            user.setNameComp(atletaExcel.nomeComp);
+//            user.setFirstName(atletaExcel.firstName);
+//            user.setLastName(atletaExcel.lastName);
+//            user.setRg(atletaExcel.rg);
+//            user.setCpf(atletaExcel.cpf);
+//            user.setBirthday(simpleDateFormat2.format((simpleDateFormat1.parse(atletaExcel.birthday))));
+//            user.setCelPhone(atletaExcel.celPhone);
+//            user.setEmail(atletaExcel.email);
+//
+//            address.setStreet(atletaExcel.street);
+//            address.setNumber(atletaExcel.addressNumber);
+//            address.setComplement(atletaExcel.complement);
+//            address.setNeighborhood(atletaExcel.neighborhood);
+//            address.setCep(atletaExcel.cep);
+//            address.setCity(atletaExcel.city);
+//            address.setState(atletaExcel.state);
+//            user.setAddress(address);
+//
+//            user.setNumber(atletaExcel.number);
+//            user.setPosicao(atletaExcel.posicao);
+//            user.setUnidade(atletaExcel.unidade);
+//            user.setActive(atletaExcel.isActive);
+//            user.setContatoNome(atletaExcel.contatoNome);
+//            user.setContatoParentesco(atletaExcel.contatoParentesco);
+//            user.setContatoTel(atletaExcel.contatoTel);
+//            user.setPicURL(atletaExcel.picURL);
+//
+//            atletas.add(user);
+//        }
     }
 }

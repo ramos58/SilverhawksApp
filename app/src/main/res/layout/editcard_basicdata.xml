@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    app:cardCornerRadius="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/pic_fundo_atleta"
+            app:civ_border_color="@color/white_silverhawks"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="@id/rg_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_nome" />
+
+        <EditText
+            android:id="@+id/et_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:inputType="text"
+            android:text="                           "
+            android:textColor="@color/black_silverhawks"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_photo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_hashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:inputType="text"
+            android:text="#"
+            android:textColor="@color/black_silverhawks"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/rg_status"
+            app:layout_constraintEnd_toStartOf="@id/et_number"
+            app:layout_constraintStart_toEndOf="@id/sp_posicao"
+            app:layout_constraintTop_toBottomOf="@id/et_nome" />
+
+
+        <EditText
+            android:id="@+id/et_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="2dp"
+            android:inputType="text"
+            android:text="00"
+            android:textColor="@color/black_silverhawks"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/rg_status"
+            app:layout_constraintEnd_toStartOf="@id/sp_unidade"
+            app:layout_constraintStart_toEndOf="@id/tv_hashtag"
+            app:layout_constraintTop_toBottomOf="@id/et_nome" />
+
+        <Spinner
+            android:id="@+id/sp_posicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/position_array"
+            app:layout_constraintBottom_toTopOf="@id/rg_status"
+            app:layout_constraintEnd_toStartOf="@id/et_number"
+            app:layout_constraintStart_toEndOf="@id/iv_photo"
+            app:layout_constraintTop_toBottomOf="@id/et_nome" />
+
+        <Spinner
+            android:id="@+id/sp_unidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/unity_array"
+            app:layout_constraintBottom_toTopOf="@id/rg_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/et_number"
+            app:layout_constraintTop_toBottomOf="@id/et_nome" />
+
+        <RadioGroup
+            android:id="@+id/rg_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_photo"
+            app:layout_constraintTop_toBottomOf="@id/et_number">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/rb_ativa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Ativa"
+                android:textColor="@color/gray1_silverhawks"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/rb_inativa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Inativa"
+                android:textColor="@color/gray1_silverhawks"
+                android:textSize="14sp" />
+        </RadioGroup>
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

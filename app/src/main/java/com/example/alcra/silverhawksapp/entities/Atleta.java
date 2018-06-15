@@ -26,6 +26,33 @@ public class Atleta implements Serializable {
     private String contatoNome;
     private String contatoParentesco;
     private String contatoTel;
+    private String atletaID;
+    private String healthPlanNome;
+    private String healthPlanNumber;
+
+    public String getHealthPlanNome() {
+        return healthPlanNome;
+    }
+
+    public void setHealthPlanNome(String healthPlanNome) {
+        this.healthPlanNome = healthPlanNome;
+    }
+
+    public String getHealthPlanNumber() {
+        return healthPlanNumber;
+    }
+
+    public void setHealthPlanNumber(String healthPlanNumber) {
+        this.healthPlanNumber = healthPlanNumber;
+    }
+
+    public String getAtletaID() {
+        return atletaID;
+    }
+
+    public void setAtletaID(String atletaID) {
+        this.atletaID = atletaID;
+    }
 
     public String getContatoNome() {
         return contatoNome;

@@ -373,7 +373,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_contact2"
+                        android:id="@+id/tv_healthplanname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -387,19 +387,19 @@
                         app:layout_constraintTop_toBottomOf="@id/titulo2" />
 
                     <TextView
-                        android:id="@+id/tv_contactview2"
+                        android:id="@+id/tv_healthplannameview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="-"
                         android:textColor="@color/black_silverhawks"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_contact2"
-                        app:layout_constraintStart_toEndOf="@id/tv_contact2"
-                        app:layout_constraintTop_toTopOf="@+id/tv_contact2" />
+                        app:layout_constraintBottom_toBottomOf="@id/tv_healthplanname"
+                        app:layout_constraintStart_toEndOf="@id/tv_healthplanname"
+                        app:layout_constraintTop_toTopOf="@+id/tv_healthplanname" />
 
                     <TextView
-                        android:id="@+id/tv_contactnumber2"
+                        android:id="@+id/tv_healthplannumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -411,19 +411,19 @@
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_contactview2" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_healthplannameview" />
 
                     <TextView
-                        android:id="@+id/tv_contactnumberview2"
+                        android:id="@+id/tv_healthplannumberview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="-"
                         android:textColor="@color/black_silverhawks"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_contactnumber2"
-                        app:layout_constraintStart_toEndOf="@id/tv_contactnumber2"
-                        app:layout_constraintTop_toTopOf="@+id/tv_contactnumber2" />
+                        app:layout_constraintBottom_toBottomOf="@id/tv_healthplannumber"
+                        app:layout_constraintStart_toEndOf="@id/tv_healthplannumber"
+                        app:layout_constraintTop_toTopOf="@+id/tv_healthplannumber" />
 
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>

@@ -62,6 +62,7 @@ public class AtletasActivity extends AppCompatActivity {
                         for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                             if (doc.getType() == DocumentChange.Type.ADDED) {
                                 Atleta atleta = doc.getDocument().toObject(Atleta.class);
+
                                 atletaList.add(atleta);
                                 atletaListAdapter.notifyDataSetChanged();
                             }

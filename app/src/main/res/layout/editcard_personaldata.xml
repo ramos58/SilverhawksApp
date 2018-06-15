@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_rgicon"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_doc" />
+
+            <TextView
+                android:id="@+id/tv_rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="RG:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_rgicon"
+                app:layout_constraintStart_toEndOf="@id/iv_rgicon"
+                app:layout_constraintTop_toTopOf="@id/iv_rgicon" />
+
+            <EditText
+                android:id="@+id/et_rgview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_rg"
+                app:layout_constraintStart_toEndOf="@id/tv_rg"
+                app:layout_constraintTop_toTopOf="@+id/tv_rg" />
+
+            <ImageView
+                android:id="@+id/iv_cpficon"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_rgview"
+                app:srcCompat="@drawable/icon_doc" />
+
+            <TextView
+                android:id="@+id/tv_cpf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="CPF:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_cpficon"
+                app:layout_constraintStart_toEndOf="@+id/iv_cpficon"
+                app:layout_constraintTop_toTopOf="@+id/iv_cpficon" />
+
+            <EditText
+                android:id="@+id/et_cpfview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_cpf"
+                app:layout_constraintStart_toEndOf="@id/tv_cpf"
+                app:layout_constraintTop_toTopOf="@+id/tv_cpf" />
+
+            <ImageView
+                android:id="@+id/iv_cakeicon"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_cpfview"
+                app:srcCompat="@drawable/icon_cake" />
+
+            <TextView
+                android:id="@+id/tv_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Aniversário:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_cakeicon"
+                app:layout_constraintStart_toEndOf="@id/iv_cakeicon"
+                app:layout_constraintTop_toTopOf="@id/iv_cakeicon" />
+
+            <EditText
+                android:id="@+id/et_birthdayview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_birthday"
+                app:layout_constraintStart_toEndOf="@id/tv_birthday"
+                app:layout_constraintTop_toTopOf="@+id/tv_birthday" />
+
+            <ImageView
+                android:id="@+id/iv_telicon"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_birthdayview"
+                app:srcCompat="@drawable/icon_tel" />
+
+            <TextView
+                android:id="@+id/tv_cel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Celular:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_telicon"
+                app:layout_constraintStart_toEndOf="@id/iv_telicon"
+                app:layout_constraintTop_toTopOf="@id/iv_telicon" />
+
+            <EditText
+                android:id="@+id/et_celview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_cel"
+                app:layout_constraintStart_toEndOf="@id/tv_cel" />
+
+            <ImageView
+                android:id="@+id/iv_emailicon"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_celview"
+                app:srcCompat="@drawable/icon_email" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="E-mail:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_emailicon"
+                app:layout_constraintStart_toEndOf="@id/iv_emailicon"
+                app:layout_constraintTop_toTopOf="@id/iv_emailicon" />
+
+            <EditText
+                android:id="@+id/et_emailview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_email"
+                app:layout_constraintStart_toEndOf="@id/tv_email"
+                app:layout_constraintTop_toTopOf="@+id/tv_email" />
+
+            <TextView
+                android:id="@+id/tv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Endereço"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_emailview" />
+
+            <TextView
+                android:id="@+id/tv_cep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="CEP:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_end" />
+
+            <EditText
+                android:id="@+id/et_cepview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_cep"
+                app:layout_constraintStart_toEndOf="@id/tv_cep"
+                app:layout_constraintTop_toTopOf="@id/tv_cep" />
+
+            <TextView
+                android:id="@+id/tv_street"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Rua:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_cepview" />
+
+            <EditText
+                android:id="@+id/et_streetview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_street"
+                app:layout_constraintStart_toEndOf="@id/tv_street"
+                app:layout_constraintTop_toTopOf="@id/tv_street" />
+
+            <TextView
+                android:id="@+id/tv_addressnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Número:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_streetview" />
+
+            <EditText
+                android:id="@+id/et_addressnumberview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_addressnumber"
+                app:layout_constraintStart_toEndOf="@id/tv_addressnumber"
+                app:layout_constraintTop_toTopOf="@id/tv_addressnumber" />
+
+            <TextView
+                android:id="@+id/tv_complement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Complemento:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_addressnumberview" />
+
+            <EditText
+                android:id="@+id/et_complementview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_complement"
+                app:layout_constraintStart_toEndOf="@id/tv_complement"
+                app:layout_constraintTop_toTopOf="@id/tv_complement" />
+
+            <TextView
+                android:id="@+id/tv_neighborhood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Bairro:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_complementview" />
+
+            <EditText
+                android:id="@+id/et_neighborhoodview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_neighborhood"
+                app:layout_constraintStart_toEndOf="@id/tv_neighborhood"
+                app:layout_constraintTop_toTopOf="@id/tv_neighborhood" />
+
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Bairro:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_neighborhoodview" />
+
+            <EditText
+                android:id="@+id/et_cityview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="                           "
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_city"
+                app:layout_constraintStart_toEndOf="@id/tv_city"
+                app:layout_constraintTop_toTopOf="@id/tv_city" />
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Bairro:"
+                android:textColor="@color/black_silverhawks"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_cityview" />
+
+            <Spinner
+                android:id="@+id/sp_stateview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/state_array"
+                app:layout_constraintBottom_toBottomOf="@id/tv_state"
+                app:layout_constraintStart_toEndOf="@id/tv_state"
+                app:layout_constraintTop_toTopOf="@id/tv_state" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>
