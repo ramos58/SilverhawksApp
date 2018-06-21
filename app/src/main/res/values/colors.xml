@@ -11,4 +11,8 @@
     <color name="gold1_silverhawks">#8c7312</color>
     <color name="gold2_silverhawks">#78693b</color>
     <color name="black_silverhawks">#000000</color>
+
+    <color name="colorPrimaryNav">#d32f2f</color>
+    <color name="colorPrimaryDarkNav">#c72c2c</color>
+    <color name="colorAccentNav">#FFFFFF</color>
 </resources>

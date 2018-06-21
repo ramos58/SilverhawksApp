@@ -215,7 +215,7 @@ public class EditPerfilActivity extends AppCompatActivity {
                 atleta.setActive("Ativa");
                 break;
             case R.id.rb_inativa:
-                atleta.setActive("Inatleta");
+                atleta.setActive("Inativa");
                 break;
         }
         atleta.setRg(rg.getText().toString().replaceAll("[ .-]", ""));

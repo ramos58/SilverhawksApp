@@ -5,26 +5,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.alcra.silverhawksapp.entities.Atleta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by alcra on 27/05/2018.
  */
 
-public class AtletaListAdapter extends RecyclerView.Adapter<AtletaListAdapter.ViewHolder> {
+public class AtletaListAdapter extends RecyclerView.Adapter<AtletaListAdapter.ViewHolder> implements Filterable{
 
-    private List<Atleta> atletaList;
+    private static List<Atleta> atletaList;
+    private static List<Atleta> atletaListFiltered;
     private OnClick onClick;
     private Context context;
 
     public AtletaListAdapter(Context context, List<Atleta> atletaList) {
         this.atletaList = atletaList;
+        this.atletaListFiltered = atletaList;
         this.context = context;
     }
 
@@ -56,7 +61,42 @@ public class AtletaListAdapter extends RecyclerView.Adapter<AtletaListAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return atletaList.size();
+        return atletaListFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    atletaListFiltered = atletaList;
+                } else {
+                    List<Atleta> filteredList = new ArrayList<>();
+                    for (Atleta athlete : atletaList) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (athlete.getNameComp().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(athlete);
+                        }
+                    }
+
+                    atletaListFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = atletaListFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                atletaListFiltered = (ArrayList<Atleta>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public interface OnClick{

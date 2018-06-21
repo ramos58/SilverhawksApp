@@ -4,22 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_main"
     tools:context="com.example.alcra.silverhawksapp.MainActivity">
 
     <include
         android:id="@+id/include"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar_main" />
 
     <ImageView
         android:id="@+id/bt_logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:srcCompat="@drawable/logo1"
-        android:clickable="true"/>
+        app:srcCompat="@drawable/logo1" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -38,6 +39,7 @@
         android:drawablePadding="16dp"
         android:drawableTop="@drawable/icon_paper"
         android:ellipsize="end"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:padding="24dp"
         android:text="CHAMADA"
@@ -58,6 +60,7 @@
         android:drawablePadding="16dp"
         android:drawableTop="@drawable/rb_icon"
         android:ellipsize="end"
+        android:background="@android:color/transparent"
         android:maxLines="1"
         android:padding="24dp"
         android:text="TREINO"
@@ -84,6 +87,7 @@
         android:text="CALENDÁRIO"
         android:textColor="@color/white_silverhawks"
         android:textSize="16sp"
+        android:background="@android:color/transparent"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -101,6 +105,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:paddingBottom="24dp"
+        android:background="@android:color/transparent"
         android:paddingTop="24dp"
         android:text="ATLETAS"
         android:textColor="@color/white_silverhawks"
@@ -129,7 +134,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="Olá, "
+        android:textColor="@color/white_silverhawks"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
@@ -138,7 +145,9 @@
         android:id="@+id/tvUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="usuário"
+        android:textColor="@color/white_silverhawks"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/tvOla"
         app:layout_constraintTop_toBottomOf="@+id/include" />
@@ -148,7 +157,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="#00"
+        android:textColor="@color/white_silverhawks"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/tvUser"
         app:layout_constraintTop_toBottomOf="@+id/include" />
