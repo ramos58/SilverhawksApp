@@ -1,11 +1,14 @@
 package com.example.alcra.silverhawksapp;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -48,14 +51,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void onClick(View view) {
-        loginUser(emailText.getText().toString(),passText.getText().toString());
+        if (valid()){
+            loginUser(emailText.getText().toString(),passText.getText().toString());
+        }else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Alerta");
+            builder.setMessage("Todos os campos devem ser preenchidos!");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.create().show();
+        }
+    }
+
+    private boolean valid() {
+        if (emailText.getText().toString().isEmpty()){
+            return false;
+        }else if (passText.getText().toString().isEmpty()){
+            return false;
+        }
+        return true;
     }
 
     private void loginUser(String email, final String password) {
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setIndeterminate(true);
+        dialog.setMessage("Logando...");
+        dialog.show();
+
         auth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        dialog.dismiss();
+
                         if(!task.isSuccessful())
                         {
                             if(password.length() < 6)

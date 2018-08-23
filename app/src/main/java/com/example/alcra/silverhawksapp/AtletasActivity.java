@@ -1,5 +1,6 @@
 package com.example.alcra.silverhawksapp;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.alcra.silverhawksapp.entities.Atleta;
 import com.google.firebase.firestore.DocumentChange;
@@ -49,6 +51,7 @@ public class AtletasActivity extends AppCompatActivity {
         atletaListAdapter.setOnClick(new AtletaListAdapter.OnClick() {
             @Override
             public void click(Atleta atleta) {
+                hideKeyboard();
                 startActivity(PerfilActivity.newIntent(AtletasActivity.this,atleta));
             }
         });
@@ -143,4 +146,8 @@ public class AtletasActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
+    }
 }

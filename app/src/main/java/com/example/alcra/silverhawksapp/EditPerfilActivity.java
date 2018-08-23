@@ -106,10 +106,17 @@ public class EditPerfilActivity extends AppCompatActivity {
             contato.setText(atleta.getContatoNome());
             parentesco.setText(atleta.getContatoParentesco());
             str = atleta.getContatoTel();
-            if (str.length() > 10)
-                contatoNumber.setText("(" + str.subSequence(0, str.length() - 9) + ") " + str.subSequence(str.length() - 9, str.length() - 4) + "-" + str.subSequence(str.length() - 4, str.length()));
-            else
-                contatoNumber.setText("(" + str.subSequence(0, str.length() - 8) + ") " + str.subSequence(str.length() - 8, str.length() - 4) + "-" + str.subSequence(str.length() - 4, str.length()));
+
+            try {
+                if (!str.isEmpty()){
+                    if (str.length() > 10)
+                        contatoNumber.setText("(" + str.subSequence(0, str.length() - 9) + ") " + str.subSequence(str.length() - 9, str.length() - 4) + "-" + str.subSequence(str.length() - 4, str.length()));
+                    else
+                        contatoNumber.setText("(" + str.subSequence(0, str.length() - 8) + ") " + str.subSequence(str.length() - 8, str.length() - 4) + "-" + str.subSequence(str.length() - 4, str.length()));
+                }
+            }catch (Exception e){
+                contatoNumber.setText("");
+            }
 
             Glide.with(EditPerfilActivity.this).load(atleta.getPicURL()).into(fotoPerfil);
 
