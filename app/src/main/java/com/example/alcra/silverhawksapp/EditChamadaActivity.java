@@ -1,7 +1,10 @@
 package com.example.alcra.silverhawksapp;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -30,10 +35,13 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import static com.example.alcra.silverhawksapp.entities.Chamada.Tipo.PRATICO;
+import static com.example.alcra.silverhawksapp.entities.Chamada.Tipo.TEORICO;
 
 /**
  * Created by alcra on 27/05/2018.
@@ -59,7 +67,8 @@ public class EditChamadaActivity extends AppCompatActivity {
     EditText localEditText;
     EditText dataEditText;
     RadioGroup tipoRadioGroup;
-
+    Date chamadaDate;
+    Chamada chamada;
 
 
     @Override
@@ -70,7 +79,6 @@ public class EditChamadaActivity extends AppCompatActivity {
         localEditText = findViewById(R.id.et_local);
         dataEditText = findViewById(R.id.et_data);
         tipoRadioGroup = findViewById(R.id.rg_tipo);
-        Chamada chamada = new Chamada();
 
         initToolbar();
 
@@ -82,7 +90,8 @@ public class EditChamadaActivity extends AppCompatActivity {
                     .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    final Chamada chamada = documentSnapshot.toObject(Chamada.class);
+                    chamada = documentSnapshot.toObject(Chamada.class);
+                    chamadaDate = chamada.getCalendarDate();
                     localEditText.setText(chamada.getLocal());
                     dataEditText.setText(chamada.getDate());
                     switch (chamada.getTipo()){
@@ -99,6 +108,55 @@ public class EditChamadaActivity extends AppCompatActivity {
         else{
             finish();
         }
+
+        initDatePicker();
+        initPlacePicker();
+    }
+
+    private void initPlacePicker() {
+        localEditText.setFocusable(false);
+        localEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditChamadaActivity.this);
+                builder.setItems(R.array.practice_places, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        localEditText.setText(Arrays.asList(getResources().getStringArray(R.array.practice_places)).get(i));
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.setTitle("Selecione o local:");
+                builder.create().show();
+            }
+        });
+    }
+
+    private void initDatePicker() {
+        dataEditText.setFocusable(false);
+        dataEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditChamadaActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        dataEditText.setText(String.format(getString(R.string.date_place_holder), i2, i1 + 1, i));
+
+                        int day = datePicker.getDayOfMonth();
+                        int month = datePicker.getMonth();
+                        int year =  datePicker.getYear();
+
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, month, day);
+
+                        chamadaDate = calendar.getTime();
+                    }
+                }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+
+                datePickerDialog.show();
+            }
+        });
     }
 
     private void initToolbar() {
@@ -116,7 +174,7 @@ public class EditChamadaActivity extends AppCompatActivity {
         adapter = new NovaChamadaListAdapter(presencaList);
 
         mFirestore.collection(Presenca.COLLECTION_PRESENCA).whereEqualTo("idChamada",chamadaId)
-                .orderBy("name", Query.Direction.DESCENDING)
+                .orderBy("name", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -181,14 +239,17 @@ public class EditChamadaActivity extends AppCompatActivity {
                 tipo = Chamada.Tipo.PRATICO;
                 break;
             case R.id.rb_teorico:
-                tipo = Chamada.Tipo.TEORICO;
+                tipo = TEORICO;
                 break;
         }
 
         DocumentReference doc = mFirestore.collection(Chamada.COLLECTION_CHAMADA)
                 .document(getIntent().getStringExtra(CHAMADA_ID));
 
-        Chamada chamada = new Chamada(data, local, tipo);
+        chamada.setCalendarDate(chamadaDate);
+        chamada.setLocal(local);
+        chamada.setTipo(tipo);
+        chamada.setDate(data);
 
         int p = 0, j = 0, f = 0;
         for (int i = 0; i < presencaList.size(); i++) {

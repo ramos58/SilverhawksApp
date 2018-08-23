@@ -76,8 +76,10 @@ public class ChamadaActivity extends AppCompatActivity {
         recycler = findViewById(R.id.recycler);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         recycler.setAdapter(chamadaListAdapter);
+    }
 
-        mFirestore.collection(Chamada.COLLECTION_CHAMADA).orderBy("date", Query.Direction.DESCENDING)
+    private void getChamadas() {
+        mFirestore.collection(Chamada.COLLECTION_CHAMADA).orderBy("calendarDate", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
@@ -85,12 +87,14 @@ public class ChamadaActivity extends AppCompatActivity {
                     Log.d("FireLog", "Error: " + e.getMessage());
                 }
 
+                chamadaList.clear();
+                refChamada.clear();
+
                 for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
                     if (doc.getType() == DocumentChange.Type.ADDED) {
                         Chamada chamada = doc.getDocument().toObject(Chamada.class);
                         chamadaList.add(chamada);
                         refChamada.add(doc.getDocument().getReference());
-                        chamadaListAdapter.notifyDataSetChanged();
                     }
                     if (doc.getType() == DocumentChange.Type.MODIFIED) {
 //                        Chamada chamada = doc.getDocument().toObject(Chamada.class);
@@ -99,12 +103,16 @@ public class ChamadaActivity extends AppCompatActivity {
 //                        chamadaList.add(doc.getOldIndex(), chamada);
                     }
                 }
+
+                chamadaListAdapter.notifyDataSetChanged();
             }
         });
     }
 
-    protected void onStart() {
-        super.onStart();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getChamadas();
     }
 
     @Override
@@ -124,17 +132,17 @@ public class ChamadaActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.teste:
-                try {
-                    addAtletas();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
+//            case R.id.teste:
+//                try {
+//                    addAtletas();
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
         }
 
         return super.onOptionsItemSelected(item);

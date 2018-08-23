@@ -1,5 +1,8 @@
 package com.example.alcra.silverhawksapp.entities;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by alcra on 27/05/2018.
  */
@@ -8,6 +11,7 @@ public class Chamada {
 
     public static final String COLLECTION_CHAMADA  = "chamada";
     private String date;
+    private Date calendarDate;
     private String local;
     private Tipo tipo;
     private String chamadaId;
@@ -23,6 +27,14 @@ public class Chamada {
     }
 
     public Chamada() {
+    }
+
+    public Date getCalendarDate() {
+        return calendarDate;
+    }
+
+    public void setCalendarDate(Date calendarDate) {
+        this.calendarDate = calendarDate;
     }
 
     public String getChamadaId() {

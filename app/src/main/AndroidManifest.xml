@@ -37,7 +37,8 @@
             android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".PerfilActivity" />
+            android:name=".PerfilActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".EditPerfilActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />

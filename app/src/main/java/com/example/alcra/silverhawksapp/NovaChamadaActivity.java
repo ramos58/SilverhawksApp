@@ -33,6 +33,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +51,7 @@ public class NovaChamadaActivity extends AppCompatActivity {
     EditText localEditText;
     EditText dataEditText;
     RadioGroup tipoRadioGroup;
+    Date chamadaDate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,6 +97,15 @@ public class NovaChamadaActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                         dataEditText.setText(String.format(getString(R.string.date_place_holder), i2, i1 + 1, i));
+
+                        int day = datePicker.getDayOfMonth();
+                        int month = datePicker.getMonth();
+                        int year =  datePicker.getYear();
+
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, month, day);
+
+                        chamadaDate = calendar.getTime();
                     }
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
 
@@ -194,6 +205,7 @@ public class NovaChamadaActivity extends AppCompatActivity {
         DocumentReference doc = mFirestore.collection(Chamada.COLLECTION_CHAMADA).document();
 
         Chamada chamada = new Chamada(data, local, tipo);
+        chamada.setCalendarDate(chamadaDate);
 
         int p = 0, j = 0, f = 0;
         for (int i = 0; i < presencaList.size(); i++) {
